@@ -8,7 +8,7 @@
 <table>
 	<tr><td>Dear {{$name}}</td></tr>
 	<tr><td>&nbsp;</td></tr>
-	<tr><td>Welcome to E-commence. Your account information is as below:</td></tr>
+	<tr><td>Welcome to RHODEL E-COMMERCE. Your account information is as below:</td></tr>
 	<tr><td>&nbsp;</td></tr>
 	<tr><td>Name: {{$name}}</td></tr>
 	<tr><td>&nbsp;</td></tr>

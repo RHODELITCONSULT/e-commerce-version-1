@@ -8,8 +8,13 @@ use App\Models\Admin;
 use App\Models\AdminsRole;
 use App\Models\Category;
 use App\Models\Product;
+// use App\Models\Subscriber;
 use App\Models\Brand;
 use App\Models\User;
+use App\Models\Rating;
+use App\Models\ShippingCharge;
+use App\Models\Coupon;
+use App\Models\Order;
 use Auth;
 use Validator;
 use Hash;
@@ -25,7 +30,12 @@ class AdminController extends Controller
       $productsCount = Product::get()->count();
       $brandsCount = Brand::get()->count();
       $usersCount = User::get()->count();
-    return view('admin.dashboard')->with(compact('categoriesCount','productsCount','brandsCount','usersCount'));
+      // $subscriberCount = Subscriber::get()->count();
+      $ratingsCount = Rating::get()->count();
+      $couponsCount = Coupon::get()->count();
+      $ordersCount = Order::get()->count();
+      $shippingCount = ShippingCharge::get()->count();
+    return view('admin.dashboard')->with(compact('categoriesCount','productsCount','brandsCount','usersCount','ratingsCount','couponsCount','ordersCount','shippingCount'));
    }
 
    public function login(Request $request){

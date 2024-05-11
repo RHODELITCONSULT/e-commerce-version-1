@@ -31,7 +31,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td style="padding-bottom: 10px;">
-                                                        <a href="https://rhodelitconsult.com"><img src="{{ asset('front/images/logo/logo-1.png') }}" alt="PapaChina /></a>
+                                                        <a href="https://rhodelitconsult.com"><img src="{{ asset('front/images/logo/logo-1.png') }}"></a>
                                                     </td>
                                                 </tr>
                                                 <tr>

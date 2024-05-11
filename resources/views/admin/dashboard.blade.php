@@ -110,11 +110,11 @@
         <div class="col-12 col-sm-6 col-md-3">
           <div class="info-box">
             <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cart-plus"></i></span>
-            <a style="color:#fff;" href="{{ url('admin/categories') }}">
+            <a style="color:#fff;" href="{{ url('admin/orders') }}">
              <div class="info-box-content">
               <span class="info-box-text">Orders</span>
               <span class="info-box-number">
-                {{$categoriesCount}}
+                {{$ordersCount}}
                 <!-- <small>%</small> -->
               </span>
             </a>
@@ -127,10 +127,10 @@
         <div class="col-12 col-sm-6 col-md-3">
           <div class="info-box mb-3">
             <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-pen-alt"></i></span>
-            <a style="color:#fff;" href="{{ url('admin/brands') }}">
+            <a style="color:#fff;" href="{{ url('admin/ratings') }}">
             <div class="info-box-content">
               <span class="info-box-text">Ratings & Reviews</span>
-              <span class="info-box-number">{{$brandsCount}}</span></a>
+              <span class="info-box-number">{{$ratingsCount}}</span></a>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -144,10 +144,10 @@
         <div class="col-12 col-sm-6 col-md-3">
           <div class="info-box mb-3">
             <span class="info-box-icon bg-success elevation-1"><i class="fas fa-truck"></i></span>
-            <a style="color:#fff;" href="{{ url('admin/products') }}">
+            <a style="color:#fff;" href="{{ url('admin/shipping-charges') }}">
             <div class="info-box-content">
-              <span class="info-box-text">Shipping Charges</span>
-              <span class="info-box-number">{{$productsCount}}</span></a>
+              <span class="info-box-text">Shipping</span>
+              <span class="info-box-number">{{$shippingCount}}</span></a>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -155,13 +155,17 @@
         </div>
         <!-- /.col -->
         <div class="col-12 col-sm-6 col-md-3">
-          <div class="info-box mb-3">
-            <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
-            <a style="color:#fff;" href="{{ url('admin/users') }}">
-            <div class="info-box-content">
-              <span class="info-box-text">Subscribers</span>
-              <span class="info-box-number">{{$usersCount}}</span></a>
-            </div></a>
+          <div class="info-box">
+            <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-gifts"></i></span>
+            <a style="color:#fff;" href="{{ url('admin/coupons') }}">
+             <div class="info-box-content">
+              <span class="info-box-text">Coupons</span>
+              <span class="info-box-number">
+                {{$couponsCount}}
+                <!-- <small>%</small> -->
+              </span>
+            </a>
+            </div>
             <!-- /.info-box-content -->
           </div>
           <!-- /.info-box -->
@@ -178,22 +182,7 @@
     <div class="container-fluid">
       <!-- Info boxes -->
       <div class="row">
-        <div class="col-12 col-sm-6 col-md-3">
-          <div class="info-box">
-            <span class="info-box-icon bg-info elevation-1"><i class="fas fa-gifts"></i></span>
-            <a style="color:#fff;" href="{{ url('admin/categories') }}">
-             <div class="info-box-content">
-              <span class="info-box-text">Coupons</span>
-              <span class="info-box-number">
-                {{$categoriesCount}}
-                <!-- <small>%</small> -->
-              </span>
-            </a>
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
+        
         
 
         <!-- fix for small devices only -->
