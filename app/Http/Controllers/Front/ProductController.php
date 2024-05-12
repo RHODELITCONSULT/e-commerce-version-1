@@ -17,6 +17,7 @@ use App\Models\Country;
 use App\Models\User;
 use App\Models\DeliveryAddress;
 use App\Models\Order;
+use App\Models\Rating;
 use App\Models\OrdersProduct;
 use App\Models\ShippingCharge;
 use Session;
@@ -142,6 +143,9 @@ class ProductController extends Controller
             $groupProducts = Product::select('id','product_color')->where('id','!=',$id)->where(['group_code'=>$productDetails['group_code'],'status'=>1])->get()->toArray();
             // dd($groupProducts);
         }
+
+        // Ratings
+       
 
         // Get Related Products
         $relatedProducts = Product::with('brand','images')->where('category_id',$productDetails['category']['id'])->where('id','!=',$id)->limit(4)->inRandomOrder()->get()->toArray();

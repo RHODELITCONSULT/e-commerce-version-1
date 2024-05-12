@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-       Schema::table('products', function($table){
-            $table->string('is_bestseller')->after('meta_keywords');
+        Schema::create('wishlists', function (Blueprint $table) {
+            $table->id();
+            $table->integer('user_id');
+            $table->integer('product_id');
+            $table->timestamps();
         });
     }
 
@@ -21,8 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('products', function($table){
-            $table->dropColumn('is_bestseller');
-        });
+        Schema::dropIfExists('wishlists');
     }
 };

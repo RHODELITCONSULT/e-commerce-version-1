@@ -61,6 +61,9 @@ foreach ($catUrls as $key => $url) {
      // Add Subscriber Email
      Route::post('add-subscriber-email','NewsletterController@addSubscriber');
 
+     // Add Rating/Review
+     Route::post('add-rating','RatingController@addRating');
+
     // User Confirm Account
     Route::match(['get','post'],'user/confirm/{code}','Usercontroller@confirmAccount');
 

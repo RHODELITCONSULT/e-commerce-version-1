@@ -204,11 +204,11 @@
         </div>
         </div>
         </div>
-        <div class="col-lg-12">
+        <!-- <div class="col-lg-12">
             <div class="load-more">
                             <button class="btn btn--e-brand" type="button">View More</button>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -263,11 +263,11 @@
                         @endforeach
                     </div>
                 </div>
-                <div class="col-lg-12">
+                <!-- <div class="col-lg-12">
                     <div class="load-more">
                         <button class="btn btn--e-brand" type="button">View More</button>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
         <!--====== End - Section Content ======-->
@@ -322,11 +322,11 @@
                         @endforeach
                     </div>
                 </div>
-                <div class="col-lg-12">
+                <!-- <div class="col-lg-12">
                     <div class="load-more">
                         <button class="btn btn--e-brand" type="button">View More</button>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
         <!--====== End - Section Content ======-->

@@ -1,12 +1,57 @@
 <?php 
 use App\Models\ProductsFilter; 
 use App\Models\Category;
+use App\Models\Rating;
 // Get Categories and their Sub Categories
 $categories = Category::getCategories();
 $url = Route::getFacadeRoot()->current()->uri;
  $categoryDetails = Category::categoryDetails($url);
  // dd($categoryDetails['categoryDetails']['parentcategory']['category_name']);
 ?>
+
+<style>
+*{
+    margin: 0;
+    padding: 0;
+}
+.rating__check{
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+}
+.rating__check:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rating__check:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#ccc;
+}
+.rating__check:not(:checked) > label:before {
+    content: '★ ';
+}
+.rating__check > input:checked ~ label {
+    color: #ffc700;    
+}
+.rating__check:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.rating__check > input:checked + label:hover,
+.rating__check > input:checked + label:hover ~ label,
+.rating__check > input:checked ~ label:hover,
+.rating__check > input:checked ~ label:hover ~ label,
+.rating__check > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+
+}
+</style>
+
 <div class="shop-w-master">
     <h1 class="shop-w-master__heading u-s-m-b-30"><i class="fas fa-filter u-s-m-r-8"></i>
 
@@ -58,16 +103,16 @@ $url = Route::getFacadeRoot()->current()->uri;
 
                     <span class="fas fa-minus shop-w__toggle" data-target="#s-rating" data-toggle="collapse"></span>
                 </div>
-                <div class="shop-w__wrap collapse show" id="s-rating">
+                <div class="shop-w__wrap collapse show" id="rating">
                     <ul class="shop-w__list gl-scroll">
                         <li>
                             <div class="rating__check">
 
                                 <input type="checkbox">
-                                <div class="rating__check-star-wrap"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                            </div>
+                                <div class="rating__check-star-wrap"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
 
-                            <span class="shop-w__total-text">(2)</span>
+                                    <span><label for="star5" title="tex" value="5" name="rating__check">5 stars</label></span>(20)</div>
+                            </div>
                         </li>
                         <li>
                             <div class="rating__check">
@@ -75,10 +120,8 @@ $url = Route::getFacadeRoot()->current()->uri;
                                 <input type="checkbox">
                                 <div class="rating__check-star-wrap"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
 
-                                    <span>& Up</span></div>
+                                    <span><label for="star5" title="tex" value="4" name="rating__check">4 stars</label></span>(20)</div>
                             </div>
-
-                            <span class="shop-w__total-text">(8)</span>
                         </li>
                         <li>
                             <div class="rating__check">
@@ -86,10 +129,8 @@ $url = Route::getFacadeRoot()->current()->uri;
                                 <input type="checkbox">
                                 <div class="rating__check-star-wrap"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
 
-                                    <span>& Up</span></div>
+                                    <span><label for="star3" title="tex" value="3" name="rating__check">3 stars</label></span>(20)</div>
                             </div>
-
-                            <span class="shop-w__total-text">(10)</span>
                         </li>
                         <li>
                             <div class="rating__check">
@@ -97,21 +138,17 @@ $url = Route::getFacadeRoot()->current()->uri;
                                 <input type="checkbox">
                                 <div class="rating__check-star-wrap"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
 
-                                    <span>& Up</span></div>
+                                   <span><label for="star2" title="tex" value="2" name="rating__check">2 stars</label></span>(2)</div>
                             </div>
-
-                            <span class="shop-w__total-text">(12)</span>
-                        </li>
+                         </li>
                         <li>
                             <div class="rating__check">
 
                                 <input type="checkbox">
                                 <div class="rating__check-star-wrap"><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
 
-                                    <span>& Up</span></div>
+                                 <span><label for="star1" title="tex" value="1" name="rating__check">1 stars</label></span>(2)</div>
                             </div>
-
-                            <span class="shop-w__total-text">(1)</span>
                         </li>
                     </ul>
                 </div>
