@@ -45,12 +45,12 @@
                                     <ul class="dash__f-list">
                                         <li><a href="account.html">My Billing/Contact Address</a></li>
                                         <li><a href="orders.html">My Orders</a></li>
-                                        <li><a href="wishlist.html">My Wish List</a></li>
+                                        <li><a href="{{route("wishlists")}}">My Wish List</a></li>
                                         <li><a href="update-password.html">Update Password</a></li>
                                     </ul>
                                 </div>
                             </div>
-                            
+
                             <!--====== End - Dashboard Features ======-->
                         </div>
                         <div class="col-lg-9 col-md-12">
@@ -88,7 +88,7 @@
                                             </div>
                                             <div class="u-s-m-b-30"></div>
                                         </div>
-                                        
+
 
                                         <button class="btn btn--e-brand-b-2" type="submit">SAVE</button>
                                     </form>

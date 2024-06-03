@@ -22,13 +22,13 @@ class ProductsController extends Controller
         $products = Product::with('category')->get()->toArray();
         // dd($products);
 
-        // Set Admin/Subadmins Permission for Products 
+        // Set Admin/Subadmins Permission for Products
        $productsModuleCount = AdminsRole::where(['subadmin_id'=>Auth::guard('admin')->user()->id,'module'=>'products'])->count();
        $productsModule = array();
        if(Auth::guard('admin')->user()->type=="admin"){
             $productsModule['view_access'] = 1;
             $productsModule['edit_access'] = 1;
-            $productsModule['full_access'] = 1; 
+            $productsModule['full_access'] = 1;
        }else if($productsModuleCount==0){
             $message = "This feature is restricted for you!";
             return redirect('admin/dashboard')->with('error_message',$message);
@@ -61,7 +61,7 @@ class ProductsController extends Controller
         Product::where('id',$id)->delete();
         return redirect()->back()->with('success_message','Product deleted successfully!');
     }
-    
+
     public function addEditProduct(Request $request,$id=null){
         Session::put('page','products');
         if($id==""){
@@ -72,7 +72,7 @@ class ProductsController extends Controller
             $message = 'Product added successfully!';
         }else{
            // Edit Product
-            $title = "Edit Product"; 
+            $title = "Edit Product";
             $product = Product::with(['images','attributes'])->find($id);
             // dd($product['images']);
             $message = 'Product Updated successfully!';
@@ -141,7 +141,7 @@ class ProductsController extends Controller
             $product->group_code = $data['group_code'];
             $product->product_price = $data['product_price'];
             $product->product_discount = $data['product_discount'];
-            
+
             if(!empty($data['product_discount'])&&$data['product_discount']>0){
                 $product->discount_type = 'product';
                 $product->final_price = $data['product_price'] - ($data['product_price'] * $data['product_discount'])/100;
@@ -159,7 +159,7 @@ class ProductsController extends Controller
             $product->sleeve = $data['sleeve'];
             $product->pattern = $data['pattern'];
             $product->fit = $data['fit'];
-            $product->occasion = $data['occasion'];
+            $product->occassion = $data['occasion'];
             $product->description = $data['description'];
             $product->wash_care = $data['wash_care'];
             $product->search_keywords = $data['search_keywords'];
@@ -189,14 +189,14 @@ class ProductsController extends Controller
             if($request->hasFile('product_images')){
                 $images = $request->file('product_images');
                 // echo "<pre>"; print_r($images); die;
-                
+
                 foreach ($images as $key =>$image) {
 
                     // Generate Temp Image
                     $image_temp = Image::make($image);
 
                     // Get Image Extension
-                    $extension =$image->getClientOriginalExtension(); 
+                    $extension =$image->getClientOriginalExtension();
 
                     // Generate New Image Name
                     $imageName = 'product-'.rand(1111,9999999).'.'.$extension;
@@ -255,7 +255,7 @@ class ProductsController extends Controller
                     $attribute->stock = $data['stock'][$key];
                     $attribute->status = 1;
                     $attribute->save();
-                }  
+                }
             }
 
             // Edit Product Attributes
@@ -264,10 +264,10 @@ class ProductsController extends Controller
                 if(!empty($attribute)){
                     ProductsAttribute::where(['id'=>$data['attributeId'][$akey]])->update(['price'=>$data['price'][$akey],'stock'=>$data['stock'][$akey]]);
                 }
-            } 
+            }
         }
 
-            
+
 
             return redirect('admin/products')->with('success_message',$message);
         }
@@ -332,7 +332,7 @@ class ProductsController extends Controller
 
         $message = "Product Image has been deleted successfully!";
         return redirect()->back()->with('success_message',$message);
-        
+
     }
 
     public function updateAttributeStatus(Request $request)

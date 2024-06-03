@@ -51,13 +51,13 @@
                             <form class="checkout-f__delivery" id="deliveryAddressForm" action="javascript:;" method="post">@csrf
                                 <input type="hidden" name="delivery_id">
                                 <div class="u-s-m-b-30">
-                                   
+
                                     <!--====== NAME ======-->
                                     <div class="u-s-m-b-15">
 
                                         <label class="gl-label" for="shipping-name">NAME *</label>
 
-                                        <input class="input-text input-text--primary-style" type="text" id="delivery_name" name="delivery_name">
+                                        <input class="input-text input-text--primary-style" type="text" id="delivery_name" name="delivery_name" value="{{Auth::user()->name}}">
                                         <p id="delivery-delivery_name"></p>
                                     </div>
                                     <!--====== End - NAME ======-->
@@ -198,7 +198,7 @@
                                                     M: {{Auth::user()->mobile }}
                                                     @endif
                                                     </p>
- 
+
                                                 <a class="ship-b__edit btn--e-transparent-platinum-b-2" data-modal="modal" data-modal-id="#edit-ship-address" href="{{ url('user/account') }}" >Edit</a>
                                             </div>
                                         </div>
@@ -251,7 +251,7 @@
 
                                                 <span class="gl-text u-s-m-t-6">Pay Upon Cash on delivery. (This service is only available for some countries)</span>
                                             </div>
-                                            <div class="u-s-m-b-10">
+                                            {{-- <div class="u-s-m-b-10">
 
                                                 <!--====== Radio Box ======-->
                                                 <div class="radio-box">
@@ -264,8 +264,8 @@
                                                 <!--====== End - Radio Box ======-->
 
                                                 <span class="gl-text u-s-m-t-6">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order will not be shipped until the funds have cleared in our account.</span>
-                                            </div>
-                                            <div class="u-s-m-b-10">
+                                            </div> --}}
+                                            {{-- <div class="u-s-m-b-10">
 
                                                 <!--====== Radio Box ======-->
                                                 <div class="radio-box">
@@ -278,9 +278,23 @@
                                                 <!--====== End - Radio Box ======-->
 
                                                 <span class="gl-text u-s-m-t-6">Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</span>
-                                            </div>
-                                            
+                                            </div> --}}
+
                                             <div class="u-s-m-b-10">
+
+                                                <!--====== Radio Box ======-->
+                                                <div class="radio-box">
+
+                                                    <input type="radio" id="pay-pal" name="payment_gateway" value="Paystack">
+                                                    <div class="radio-box__state radio-box__state--primary">
+
+                                                        <label class="radio-box__label" for="pay-pal">Pay With MOMO / Debit Card</label></div>
+                                                </div>
+                                                <!--====== End - Radio Box ======-->
+
+                                                <span class="gl-text u-s-m-t-6">When you click "Place Order" below we'll take you to our checkout portal to make Payment with your Mobile Money/Debit Card(Visa/Mastercard)</span>
+                                            </div>
+                                            {{-- <div class="u-s-m-b-10">
 
                                                 <!--====== Radio Box ======-->
                                                 <div class="radio-box">
@@ -293,7 +307,7 @@
                                                 <!--====== End - Radio Box ======-->
 
                                                 <span class="gl-text u-s-m-t-6">When you click "Place Order" below we'll take you to Paypal's site to make Payment with your Credit / Debit Card or Paypal Credit.</span>
-                                            </div>
+                                            </div> --}}
                                             <div class="u-s-m-b-15">
 
                                                 <!--====== Check Box ======-->

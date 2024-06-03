@@ -101,7 +101,7 @@
     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item newarrivals">
         <div class="product-o product-o--hover-on product-o--radius">
             <div class="product-o__wrap">
-                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
+                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="{{ route("product.detail",['id'=>$product['id']]) }}">
                 @if(isset($product['images'][0]['image'])&& !empty($product['images'][0]['image']))
                 <img class="aspect__img" src="{{ asset('front/images/products/small/'.$product['images'][0]['image']) }}" alt="">
                 @else
@@ -127,7 +127,7 @@
     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item bestsellers">
         <div class="product-o product-o--hover-on product-o--radius">
             <div class="product-o__wrap">
-                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
+                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="{{ route("product.detail",['id'=>$product['id']]) }}">
                 @if(isset($product['images'][0]['image'])&& !empty($product['images'][0]['image']))
                 <img class="aspect__img" src="{{ asset('front/images/products/small/'.$product['images'][0]['image']) }}" alt="">
                 @else
@@ -153,7 +153,7 @@
     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item discountedproducts">
         <div class="product-o product-o--hover-on product-o--radius">
             <div class="product-o__wrap">
-                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
+                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="{{ route("product.detail",['id'=>$product['id']]) }}">
                 @if(isset($product['images'][0]['image'])&& !empty($product['images'][0]['image']))
                 <img class="aspect__img" src="{{ asset('front/images/products/small/'.$product['images'][0]['image']) }}" alt="">
                 @else
@@ -179,7 +179,7 @@
     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item featuredproducts">
         <div class="product-o product-o--hover-on product-o--radius">
             <div class="product-o__wrap">
-                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
+                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="{{ route("product.detail",['id'=>$product['id']]) }}">
                 @if(isset($product['images'][0]['image'])&& !empty($product['images'][0]['image']))
                 <img class="aspect__img" src="{{ asset('front/images/products/small/'.$product['images'][0]['image']) }}" alt="">
                 @else

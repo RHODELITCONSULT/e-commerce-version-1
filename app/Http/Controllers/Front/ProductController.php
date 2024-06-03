@@ -23,6 +23,8 @@ use App\Models\ShippingCharge;
 use Session;
 use Auth;
 use DB;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
 {
@@ -102,12 +104,12 @@ class ProductController extends Controller
                     'view'=>(String)View::make('front.products.ajax_products_listing')->with(compact('categoryDetails','categoryProducts','url'))
                 ]);
             }else{
-              return view('front.products.listing')->with(compact('categoryDetails','categoryProducts','url'));  
+              return view('front.products.listing')->with(compact('categoryDetails','categoryProducts','url'));
             }
 
         }else if(isset($_GET['query'])&&!empty($_GET['query'])){
             $search = $_GET['query'];
-    
+
             // Get Search Query Products
             $categoryProducts = Product::with(['brand','images'])->where(function($query)use($search){
                 $query->where('product_name','like','%'.$search.'%')
@@ -117,13 +119,13 @@ class ProductController extends Controller
             })->where('status',1);
             $categoryProducts = $categoryProducts->get();
 
-            return view('front.products.listing')->with(compact('categoryProducts'));  
+            return view('front.products.listing')->with(compact('categoryProducts'));
 
         }else{
-            abort(404);  
-        }    
+            abort(404);
+        }
     }
-    
+
 
     public function detail($id){
         $productCount = Product::where('status',1)->where('id',$id)->count();
@@ -145,7 +147,7 @@ class ProductController extends Controller
         }
 
         // Ratings
-       
+
 
         // Get Related Products
         $relatedProducts = Product::with('brand','images')->where('category_id',$productDetails['category']['id'])->where('id','!=',$id)->limit(4)->inRandomOrder()->get()->toArray();
@@ -217,7 +219,7 @@ class ProductController extends Controller
             }else{
                 $session_id = Session::get('session_id');
             }
-            
+
             // Check Product if already exists in the user Cart
             if(Auth::check()){
                 // User is logged in
@@ -352,7 +354,7 @@ class ProductController extends Controller
 
      public function emptyCart(Request $request){
         if($request->ajax()){
-            
+
             // Empty Cart
             emptyCart();
 
@@ -372,7 +374,7 @@ class ProductController extends Controller
 
         }
     }
-    
+
     public function applyCoupon(Request $request){
         if($request->ajax()){
             $data = $request->all();
@@ -384,7 +386,7 @@ class ProductController extends Controller
             // Get Total Cart Items
             $totalCartItems = totalCartItems();
 
-            
+
             // Verify Coupon is valid or not
             $couponCount = Coupon::where('coupon_code',$data['code'])->count();
             if($couponCount==0){
@@ -398,7 +400,7 @@ class ProductController extends Controller
             }else{
                 // Check for other coupon conditions
                 // echo "coupon valid"; die;
-               
+
                // Get Coupon Details
                 $couponDetails = Coupon::where('coupon_code',$data['code'])->first();
 
@@ -456,15 +458,15 @@ class ProductController extends Controller
                     //     if(!in_array($item['user_id'],$usersArr)){
                     //         $error_message = "The coupon code is not for you. Try again with valid coupon code!";
                     //     }
-                    // } 
+                    // }
 
                     $getAttributePrice = Product::getAttributePrice($item['product_id'],$item['product_size']);
 
-                    $total_amount = $total_amount + ($getAttributePrice['final_price'] * $item['product_qty']);    
+                    $total_amount = $total_amount + ($getAttributePrice['final_price'] * $item['product_qty']);
                 }
 
                 // echo $total_amount; die;
-                
+
 
                 // if error message is there
                 if(isset($error_message)){
@@ -474,7 +476,7 @@ class ProductController extends Controller
                     'message'=>$error_message,
                     'view'=>(String)View::make('front.products.cart_items')->with(compact('getCartItems')),
                     'minicartview'=>(String)View::make('front.layout.header_cart_items')->with(compact('getCartItems'))
-                    ]); 
+                    ]);
                 }else{
                     // Apply Coupon if coupon code is correct
 
@@ -501,7 +503,7 @@ class ProductController extends Controller
                     'message'=>$message,
                     'view'=>(String)View::make('front.products.cart_items')->with(compact('getCartItems')),
                     'minicartview'=>(String)View::make('front.layout.header_cart_items')->with(compact('getCartItems'))
-                    ]); 
+                    ]);
 
                 }
 
@@ -519,7 +521,7 @@ class ProductController extends Controller
             return redirect('cart')->with('error_message',$message);
         }
 
-        // Get User Delivery Addresses 
+        // Get User Delivery Addresses
         $deliveryAddresses = DeliveryAddress::deliveryAddresses();
 
         // Get All Countries
@@ -574,7 +576,12 @@ class ProductController extends Controller
             }else if($data['payment_gateway']=="Check"){
                 $payment_method = "Prepaid";
                 $order_status = "Pending";
-            }else{
+            }
+            elseif($data['payment_gateway'] ==="Paystack"){
+                $payment_method = "Prepaid";
+                $order_status = "Pending";
+            }
+            else{
                 $payment_method = "Prepaid";
                 $order_status = "Pending";
             }
@@ -602,22 +609,22 @@ class ProductController extends Controller
             // Insert Order Details
             $order = new order;
             $order->user_id = Auth::user()->id;
-            $order->name = $deliveryAddress['name']; 
-            $order->address = $deliveryAddress['address']; 
-            $order->city = $deliveryAddress['city']; 
-            $order->state = $deliveryAddress['state']; 
-            $order->country = $deliveryAddress['country']; 
-            $order->pincode = $deliveryAddress['pincode']; 
-            $order->mobile = $deliveryAddress['mobile']; 
-            $order->shipping_charges = $shipping_charges; 
-            $order->coupon_code = Session::get('couponCode'); 
-            $order->coupon_amount = Session::get('couponAmount'); 
-            $order->order_status = $order_status; 
-            $order->payment_method = $payment_method; 
-            $order->payment_gateway = $data['payment_gateway']; 
-            $order->grand_total = $grand_total; 
+            $order->name = $deliveryAddress['name'];
+            $order->address = $deliveryAddress['address'];
+            $order->city = $deliveryAddress['city'];
+            $order->state = $deliveryAddress['state'];
+            $order->country = $deliveryAddress['country'];
+            $order->pincode = $deliveryAddress['pincode'];
+            $order->mobile = $deliveryAddress['mobile'];
+            $order->shipping_charges = $shipping_charges;
+            $order->coupon_code = Session::get('couponCode');
+            $order->coupon_amount = Session::get('couponAmount');
+            $order->order_status = $order_status;
+            $order->payment_method = $payment_method;
+            $order->payment_gateway = $data['payment_gateway'];
+            $order->grand_total = $grand_total;
             $order->save();
-            $order_id = DB::getPdo()->lastInsertId(); 
+            $order_id = DB::getPdo()->lastInsertId();
 
             foreach ($getCartItems as $key => $item) {
                 $getProductDetails = Product::getProductDetails($item['product_id']);
@@ -644,7 +651,7 @@ class ProductController extends Controller
                     ProductsAttribute::where(['product_id'=>$item['product_id'],'size'=>$item['product_size']])->update(['stock'=>$newStock]);
                     // Reduce Stock Scripts Ends
                 }
-               
+
             }
 
             // Insert order Id in Session Variable
@@ -652,46 +659,75 @@ class ProductController extends Controller
 
             DB::commit();
 
-            if($data['payment_gateway']=="COD" || $data['payment_gateway']=="Bank Transfer" || $data['payment_gateway']=="Check"){
-
+            // if($data['payment_gateway']=="COD" || $data['payment_gateway']=="Bank Transfer" || $data['payment_gateway']=="Check" || $data['payment_method'] =="Paystack"){
+                if($data['payment_gateway'] =="COD"){
                 $orderDetails = Order::with('orders_products','user')->where('id',$order_id)->first()->toArray();
 
-                // Send Order Email
+                // // Send Order Email
                 $email = Auth::user()->email;
                 $messageData = [
-                    'email' =>$email,
-                    'name' => Auth::user()->name,
-                    'order_id' => $order_id,
-                    'orderDetails' => $orderDetails,
+                    'email'         =>$email,
+                    'name'          => Auth::user()->name,
+                    'order_id'      => $order_id,
+                    'orderDetails'  => $orderDetails,
                 ];
                 Mail::send('emails.order',$messageData,function($message)use($email){
-                    $message->to($email)->subject('Order Confirmed - RHODEL-ECOMMERCE');
+                    $message->to($email)->subject('Order is being confirmed - RHODEL-ECOMMERCE');
                 });
+                return redirect('/thanks');
 
 
-                if($data['payment_gateway']=="COD"){
-                    return redirect('/thanks');
-                }else if($data['payment_gateway']=="Bank Transfer"){
-                    return redirect('/thanks?order=bank');
-                }else if($data['payment_gateway']=="Check"){
-                    return redirect('/thanks?order=check');
+                // if($data['payment_gateway']=="COD"){
+                //     return redirect('/thanks');
+                // }else if($data['payment_gateway']=="Bank Transfer"){
+                //     return redirect('/thanks?order=bank');
+                // }else if($data['payment_gateway']=="Check"){
+                //     return redirect('/thanks?order=check');
+                // }
+
+
+
+            }
+            if($data['payment_gateway'] =="Paystack"){
+                //Todo => Proceed with paystack payment
+                $secret_key = config("services.paystack.secret_key");
+                $payment_url = config("services.paystack.payment_url");
+
+                $payment_data = [
+                    "email"=>Auth::user()->email,
+                    "amount"=>number_format((float)($grand_total*100),2,'.',''),
+                    "metadata"=>json_encode($array = [
+                        "payment_type"  =>"OrderPayment",
+                        "order_id"      =>$order->id,
+                        "order_reference"=>$order_id,
+                        "user_id"       =>Auth::user()->id
+                    ])
+                ];
+
+                //Todo => Make a paystack payment request API Call
+                $payment_endpoint_response = Http::withToken($secret_key)->post((String)$payment_url."/transaction/initialize", $payment_data)->json();
+
+                if($payment_endpoint_response['status'] == true){
+                    return redirect()->away($payment_endpoint_response["data"]["authorization_url"]);
                 }
-
-
-
-            }if($data['payment_gateway']=="Paypal"){
+                else{
+                    Log::error("PAYSTACK_PAYMENT_ERROR",$payment_endpoint_response);
+                    return back()->with("error_message", "Order Checkout encountered a problem. Please try again later");
+                }
+            }
+            if($data['payment_gateway']=="Paypal"){
                 // Paypal - Redirect user to Paypal page after saving order
                 return redirect('paypal');
             }else{
-                echo "Prepaid methods coming soon"; die; 
+                echo "Prepaid methods coming soon"; die;
             }
 
-               
+
 
 
         }
-        
-        
+
+
         return view('front.products.checkout')->with(compact('getCartItems','deliveryAddresses','countries','shipping_charges'));
 
          }
@@ -708,22 +744,22 @@ class ProductController extends Controller
 
     }
 
-       
-
-        
-
-            
-
-           
-
-           
-
-            
-
-        
 
 
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

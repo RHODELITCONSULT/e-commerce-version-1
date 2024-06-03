@@ -49,7 +49,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            
+
                             <!--====== End - Dashboard Features ======-->
                         </div>
                         <div class="col-lg-9 col-md-12">
@@ -64,113 +64,60 @@
                                                 <div class="col-lg-12 col-md-12 col-sm-12">
 
                                                     <!--====== Wishlist Product ======-->
+                                                    @foreach ($wishlists as $wishlist)
                                                     <div class="w-r u-s-m-b-30">
                                                         <div class="w-r__container">
                                                             <div class="w-r__wrap-1">
                                                                 <div class="w-r__img-wrap">
-
-                                                                    <img class="u-img-fluid" src="images/product/sitemakers-tshirt.png" alt=""></div>
+                                                                    @php
+                                                                    $product_image = "sitemakers-tshirt.png";
+                                                                        $product = \App\Models\Product::where('id',$wishlist->product_id)->first();
+                                                                        if($product){
+                                                                            $product_image = $product["images"][0]["image"];
+                                                                        }
+                                                                    @endphp
+                                                                    {{-- <img class="u-img-fluid" src="images/product/sitemakers-tshirt.png" alt=""></div> --}}
+                                                                    <img class="u-img-fluid" src="{{asset('front/images/products/small/'.$product_image)}}" alt=""></div>
                                                                 <div class="w-r__info">
 
                                                                     <span class="w-r__name">
 
-                                                                        <a href="product-detail.html">Product Name</a></span>
+                                                                        <a href="{{ route('product.detail',['id'=>$wishlist->product_id]) }}">{{ $wishlist->product->product_name }}</a></span>
 
                                                                     <span class="w-r__category">
+                                                                        @php
+                                                                            $brand = App\Models\Brand::where("id",$wishlist->product->brand_id)->first()->brand_name;
+                                                                        @endphp
 
-                                                                        <a href="shop-side-version-2.html">Brand Name</a></span>
+                                                                        <a href="shop-side-version-2.html">{{$brand}}</a></span>
 
-                                                                    <span class="w-r__price">₹900
-
-                                                                        <span class="w-r__discount">₹1000</span></span></div>
+                                                                        @if ($wishlist->product->discount_type =="")
+                                                                        <span class="w-r__discount">GHS.{{ number_format((float)$wishlist->product->product_price, 2,'.','') }}
+                                                                        @else
+                                                                        <span class="w-r__price">GHS.{{ number_format((float)$wishlist->product->product_price,2,'.','') }}
+                                                                        <span class="w-r__discount">GHS.{{ number_format((float)$wishlist->product->product_price,2,'.','') }}</span></span></div>
+                                                                        @endif
                                                             </div>
                                                             <div class="w-r__wrap-2">
 
-                                                                <a class="w-r__link btn--e-brand-b-2" data-modal="modal" data-modal-id="#add-to-cart">ADD TO CART</a>
+                                                                {{-- <a class="w-r__link btn--e-brand-b-2" data-modal="modal" data-modal-id="#add-to-cart">ADD TO CART</a> --}}
 
-                                                                <a class="w-r__link btn--e-transparent-platinum-b-2" href="product-detail.html">VIEW</a>
+                                                                <a class="w-r__link btn--e-transparent-platinum-b-2" href="{{ route('product.detail',['id'=>$wishlist->product_id]) }}">VIEW</a>
 
-                                                                <a class="w-r__link btn--e-transparent-platinum-b-2" href="#">REMOVE</a></div>
+                                                                <a class="w-r__link btn--e-transparent-platinum-b-2" href="{{route("wishlist.remove",['product_id'=>$wishlist->product_id])}}">REMOVE</a></div>
                                                         </div>
                                                     </div>
-                                                    <!--====== End - Wishlist Product ======-->
-
-
-                                                    <!--====== Wishlist Product ======-->
-                                                    <div class="w-r u-s-m-b-30">
-                                                        <div class="w-r__container">
-                                                            <div class="w-r__wrap-1">
-                                                                <div class="w-r__img-wrap">
-
-                                                                    <img class="u-img-fluid" src="images/product/sitemakers-tshirt.png" alt=""></div>
-                                                                <div class="w-r__info">
-
-                                                                    <span class="w-r__name">
-
-                                                                        <a href="product-detail.html">Product Name</a></span>
-
-                                                                    <span class="w-r__category">
-
-                                                                        <a href="shop-side-version-2.html">Brand Name</a></span>
-
-                                                                    <span class="w-r__price">₹900
-
-                                                                        <span class="w-r__discount">₹1000</span></span></div>
-                                                            </div>
-                                                            <div class="w-r__wrap-2">
-
-                                                                <a class="w-r__link btn--e-brand-b-2" data-modal="modal" data-modal-id="#add-to-cart">ADD TO CART</a>
-
-                                                                <a class="w-r__link btn--e-transparent-platinum-b-2" href="product-detail.html">VIEW</a>
-
-                                                                <a class="w-r__link btn--e-transparent-platinum-b-2" href="#">REMOVE</a></div>
-                                                        </div>
-                                                    </div>
-                                                    <!--====== End - Wishlist Product ======-->
-
-
-                                                    <!--====== Wishlist Product ======-->
-                                                    <div class="w-r u-s-m-b-30">
-                                                        <div class="w-r__container">
-                                                            <div class="w-r__wrap-1">
-                                                                <div class="w-r__img-wrap">
-
-                                                                    <img class="u-img-fluid" src="images/product/sitemakers-tshirt.png" alt=""></div>
-                                                                <div class="w-r__info">
-
-                                                                    <span class="w-r__name">
-
-                                                                        <a href="product-detail.html">Product Name</a></span>
-
-                                                                    <span class="w-r__category">
-
-                                                                        <a href="shop-side-version-2.html">Brand Name</a></span>
-
-                                                                    <span class="w-r__price">₹900
-
-                                                                        <span class="w-r__discount">₹1000</span></span></div>
-                                                            </div>
-                                                            <div class="w-r__wrap-2">
-
-                                                                <a class="w-r__link btn--e-brand-b-2" data-modal="modal" data-modal-id="#add-to-cart">ADD TO CART</a>
-
-                                                                <a class="w-r__link btn--e-transparent-platinum-b-2" href="product-detail.html">VIEW</a>
-
-                                                                <a class="w-r__link btn--e-transparent-platinum-b-2" href="#">REMOVE</a></div>
-                                                        </div>
-                                                    </div>
+                                                    @endforeach
                                                     <!--====== End - Wishlist Product ======-->
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <div class="route-box">
                                                         <div class="route-box__g">
-
-                                                            <a class="route-box__link" href="shop-side-version-2.html"><i class="fas fa-long-arrow-alt-left"></i>
-
+                                                            <a class="route-box__link" href="{{ url("/") }}"><i class="fas fa-long-arrow-alt-left"></i>
                                                                 <span>CONTINUE SHOPPING</span></a></div>
                                                         <div class="route-box__g">
 
-                                                            <a class="route-box__link" href="wishlist.html"><i class="fas fa-trash"></i>
+                                                            <a class="route-box__link" href="{{route("clear.wishlists")}}"><i class="fas fa-trash"></i>
 
                                                                 <span>CLEAR WISHLIST</span></a></div>
                                                     </div>

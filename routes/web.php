@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Front\IndexController;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Front\WishlistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +33,7 @@ Route::namespace('App\Http\Controllers\Front')->group(function () {
     }
 
     // Product Details Page
-    Route::get('product/{id}', 'ProductController@detail');
+    Route::get('product/{id}', 'ProductController@detail')->name("product.detail");
 
     // Get Product Attribute Price
     Route::post('get-attribute-price', 'ProductController@getAttributePrice');
@@ -114,6 +115,12 @@ Route::namespace('App\Http\Controllers\Front')->group(function () {
         Route::get('success', 'PaypalController@success');
         Route::get('error', 'PaypalController@error');
 
+        // TODO=>WISHLIST ROUTES
+        Route::get("/wishlist",[WishlistController::class,"wishlists"])->name("wishlists");
+        Route::get("/clear/wishlist",[WishlistController::class,"remove_wishlists"])->name('clear.wishlists');
+        Route::get("/add/wishlist/{product_id}",[WishlistController::class,"add_to_wishlist"])->name("add.wishlist");
+        Route::get("/remove/product/wishlist/{product_id}",[WishlistController::class, "remove_product"])->name("wishlist.remove");
+
     });
 
     // Forget Password
@@ -160,7 +167,7 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
 
         //Products
         // Route::get('products','ProductsController@products');
-        Route::get('products', [ProductsController::class, 'products']);
+        Route::get('products', [ProductsController::class, 'products'])->name("products");
         Route::post('update-product-status', 'ProductsController@updateProductStatus');
         Route::get('delete-product/{id?}', 'ProductsController@deleteProduct');
         Route::match(['get', 'post'], 'add-edit-product/{id?}', 'ProductsController@addEditProduct');
@@ -234,3 +241,7 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('add-subscriber-email', 'NewsletterController@addSubscriber');
     });
 });
+
+// TODO=>PAYSTACK ROUTES
+Route::post('paystack/web_hook',[PaystackWebhookController::class,'handle']);
+Route::post('paystack/callback',[PaystackWebhookController::class,'callback']);

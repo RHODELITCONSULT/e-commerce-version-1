@@ -772,14 +772,14 @@ $totalCartItems = totalCartItems();
                 @foreach($categories as $category)
                 <li class="has-dropdown">
                     <a href="#">
-                    {{$category['category_name']}}<i @if(count($category['subcategories'])) class="fas fa-angle-down u-s-m-l-6" @endif></i></a>@if(count($category['subcategories'])) 
+                    {{$category['category_name']}}<i @if(count($category['subcategories'])) class="fas fa-angle-down u-s-m-l-6" @endif></i></a>@if(count($category['subcategories']))
                     <!--====== Dropdown ======-->
                     <span class="js-menu-toggle"></span>
                     <ul style="width:170px">
                         @foreach($category['subcategories'] as $subcategory)
                         <li class="has-dropdown has-dropdown--ul-left-100">
                             <a href="{{ url($subcategory['url']) }}">{{$subcategory['category_name']}}@if(count($subcategory['subcategories']))<i class="fas fa-angle-down i-state-right u-s-m-l-6"></i>@endif</a>
-                            @if(count($subcategory['subcategories'])) 
+                            @if(count($subcategory['subcategories']))
                             <!--====== Dropdown ======-->
                             <span class="js-menu-toggle"></span>
                             <ul style="width:118px">
@@ -794,7 +794,7 @@ $totalCartItems = totalCartItems();
                             </li>
                         @endforeach
                         </li>
-                       
+
                     </ul>
                     <!--====== End - Dropdown ======-->
                     @endif
@@ -822,7 +822,7 @@ $totalCartItems = totalCartItems();
                             <a href="index.html"><i class="fas fa-home u-c-brand"></i></a>
                         </li>
                         <li>
-                            <a href="wishlist.html"><i class="far fa-heart"></i></a>
+                            <a href="{{route("wishlists")}}"><i class="far fa-heart"></i></a>
                         </li>
                         <li class="has-dropdown">
                             <a class="mini-cart-shop-link"><i class="fas fa-shopping-bag"></i>

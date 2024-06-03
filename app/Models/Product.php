@@ -13,11 +13,11 @@ class Product extends Model
         return $this->belongsTo('App\Models\Category','category_id')->with('parentcategory');
 
     }
-       
+
     public function brand(){
         return $this->belongsTo('App\Models\Brand','brand_id');
     }
-    
+
     public static function productsFilters(){
         // Product Filters
         $productsFilters['fabricArray'] = array('Cotton','Polyester','Wool');
@@ -33,7 +33,7 @@ class Product extends Model
     }
 
     public function attributes(){
-        return $this->hasMany('App\Models\ProductsAttribute');
+        return $this->hasMany('App\Models\ProductsAttribute', "product_id");
     }
 
     public static function getAttributePrice($product_id,$size){
@@ -93,7 +93,8 @@ class Product extends Model
         }
         return $image;
      }
-        
+
+
 }
 
 

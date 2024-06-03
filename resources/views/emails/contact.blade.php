@@ -1194,7 +1194,7 @@
                                                 <a href="cart.html">My Cart</a>
                                             </li>
                                             <li>
-                                                <a href="wishlist.html">My Wishlist</a>
+                                                <a href="{{route("wishlists")}}">My Wishlist</a>
                                             </li>
                                         </ul>
                                     </div>

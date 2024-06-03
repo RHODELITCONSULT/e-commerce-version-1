@@ -27,11 +27,11 @@
     content: '★ ';
 }
 .rate > input:checked ~ label {
-    color: #ffc700;    
+    color: #ffc700;
 }
 .rate:not(:checked) > label:hover,
 .rate:not(:checked) > label:hover ~ label {
-    color: #deb217;  
+    color: #deb217;
 }
 .rate > input:checked + label:hover,
 .rate > input:checked + label:hover ~ label,
@@ -99,7 +99,7 @@
                             <span class="pd-detail__name">{{ $productDetails['product_name'] }}</span></div>
                         <div>
                             <div class="pd-detail__inline getAttributePrice">
-                                <span class="pd-detail__price">GHC{{$productDetails['final_price']}}</span>
+                                <span class="pd-detail__price">GHC{{ number_format((float)$productDetails['final_price'],2,'.','') }}</span>
                                 @if($productDetails['discount_type']!="")
                                 <span class="pd-detail__discount">({{$productDetails['product_discount']}}% OFF)</span><del class="pd-detail__del">GHC{{$productDetails['product_price']}}</del>
                             @endif
@@ -114,9 +114,21 @@
                         <div class="u-s-m-b-15">
                             <div class="pd-detail__inline">
 
-                                <span class="pd-detail__stock">200 in stock</span>
+                                @php
+                                    $product_attributes = \App\Models\ProductsAttribute::where('product_id',$productDetails['id'])->get();
+                                    $product_quantity = 0;
+                                    if($product_attributes){
+                                        foreach ($product_attributes as $product) {
+                                            $product_quantity += $product['stock'];
+                                        }
+                                    }
+                                @endphp
+                                @if ($product_quantity>0)
+                                <span class="pd-detail__stock">{{ $product_quantity }} in stock</span>
+                                @else
+                                <span class="pd-detail__left">Out of Stock</span></div>
+                                @endif
 
-                                <span class="pd-detail__left">Only 2 left</span></div>
                         </div>
                         <div class="u-s-m-b-15">
 
@@ -124,11 +136,11 @@
                         <div class="u-s-m-b-15">
                             <div class="pd-detail__inline">
                                 <span class="pd-detail__click-wrap"><i class="far fa-heart u-s-m-r-6"></i>
-                                    <a href="signin.html">Add to Wishlist</a>
+                                    <a href="{{route("add.wishlist",['product_id'=>$productDetails['id']])}}">Add to Wishlist</a>
                                 </span>
                             </div>
                         </div>
-                        
+
                         <div class="u-s-m-b-15">
                             <ul class="pd-social-list">
                                 <li>
@@ -148,14 +160,14 @@
                                     <a class="s-gplus--color-hover" href="#"><i class="fab fa-google-plus-g"></i></a></li>
                             </ul>
                         </div>
-                      
+
                         <div class="u-s-m-b-15">
                             <form name="addToCart" id="addToCart" class="pd-detail__form" action="javascript:;">
                                 <input type="hidden" name="product_id" value="{{ $productDetails['id'] }}" >
                                 @if(count($groupProducts)>0)
                                 <div class="u-s-m-b-15">
                                     <span class="pd-detail__label u-s-m-b-8">Color:</span>
-                                    <div class="pd-detail__color"> 
+                                    <div class="pd-detail__color">
                                         @foreach($groupProducts as $product)
                                         <a href="{{ url('product/'.$product['id'])}}">
                                             <div class="color__radio">
@@ -167,7 +179,7 @@
                                 </div>
                                 @endif
                                 <div class="u-s-m-b-15">
-                                
+
                                     <span class="pd-detail__label u-s-m-b-8">Size:</span>
                                     <div class="pd-detail__size">
                                     	@foreach($productDetails['attributes'] as $attribute)
@@ -322,7 +334,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
 
 
 
@@ -353,13 +365,13 @@
                             <div class="tab-pane fade show active" id="pd-rev">
                                 <div class="pd-tab__rev">
                                     <div class="u-s-m-b-30">
-                                        
+
                                     </div>
                                     <div class="u-s-m-b-30">
                                         <form class="pd-tab__rev-f1">
                                             <div class="rev-f1__group">
                                                 <div class="u-s-m-b-15">
-                                                   
+
                                                 </div>
                                                 <!-- <div class="u-s-m-b-15">
 
@@ -368,10 +380,10 @@
                                                         <option>Sort by: Worst Rating</option>
                                                     </select></div>
                                             </div> -->
-                                            
-                                                
-                                                
-                                        </form> 
+
+
+
+                                        </form>
                                     </div>
                                     <div class="u-s-m-b-30">
                                         <form class="pd-tab__rev-f2" method="POST" action="{{ url('add-rating') }}" name="formRating" id="formRating">@csrf()
@@ -423,7 +435,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            
+
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -432,7 +444,7 @@
                                                 <div class="u-s-m-b-15">
 
                                                     <label class="gl-label" for="reviewer-text">YOUR REVIEW *</label><textarea name="review" class="text-area text-area--primary-style" id="reviewer-text" placeholder="Your Review" required=""></textarea></div>
-                                                
+
                                             </div>
                                             <div>
 

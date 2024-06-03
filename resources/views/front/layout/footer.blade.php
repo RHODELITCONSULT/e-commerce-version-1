@@ -52,7 +52,7 @@
                                         <a href="#">My Cart</a>
                                     </li>
                                     <li>
-                                        <a href="#">My Wishlist</a>
+                                        <a href="{{route("wishlists")}}">My Wishlist</a>
                                     </li>
                                 </ul>
                             </div>
@@ -106,7 +106,7 @@
             <div class="col-lg-12">
                 <div class="lower-footer__content">
                     <div class="lower-footer__copyright">
-                         <strong>Copyright &copy; <?php echo date('Y'); ?></strong>  
+                         <strong>Copyright &copy; <?php echo date('Y'); ?></strong>
                          <a href="https://rhodelitconsult.com">RHODEL IT CONSULT</a>.</strong>
                         <span>All Right Reserved</span>
                     </div>

@@ -9,6 +9,7 @@ use App\Models\Brand;
 use Session;
 use Image;
 use Auth;
+use Illuminate\Support\Str;
 
 class BrandController extends Controller
 {
@@ -16,13 +17,13 @@ class BrandController extends Controller
         Session::put('page','brands');
         $brands = Brand::get();
 
-        // Set Admin/Subadmins Permission for Brands 
+        // Set Admin/Subadmins Permission for Brands
        $brandsModuleCount = AdminsRole::where(['subadmin_id'=>Auth::guard('admin')->user()->id,'module'=>'brands'])->count();
        $brandsModule = array();
        if(Auth::guard('admin')->user()->type=="admin"){
             $brandsModule['view_access'] = 1;
             $brandsModule['edit_access'] = 1;
-            $brandsModule['full_access'] = 1; 
+            $brandsModule['full_access'] = 1;
        }else if($brandsModuleCount==0){
             $message = "This feature is restricted for you!";
             return redirect('admin/dashboard')->with('error_message',$message);
@@ -74,19 +75,19 @@ class BrandController extends Controller
             if($id==""){
                 $rules = [
                     'brand_name' => 'required',
-                    'url' => 'required|unique:brands',
+                    // 'url' => 'required|unique:brands',
                 ];
             }else{
                 $rules = [
                     'brand_name' => 'required',
-                    'url' => 'required',
+                    // 'url' => 'required',
                 ];
             }
 
 
             $customMessages = [
                 'brand_name.required' => 'Brand Name is required',
-                'url.required' => 'Brand URL is required',
+                // 'url.required' => 'Brand URL is required',
                 'url.unique' => 'Unique Brand URL is required',
             ];
 
@@ -99,12 +100,12 @@ class BrandController extends Controller
                //Get Image Extension
                $extension = $image_tmp->getClientOriginalExtension();
                //Generate New Image
-               $imageName = rand(111,99999).'.'.$extension; 
+               $imageName = rand(111,99999).'.'.$extension;
                $image_path = 'front/images/brands/'.$imageName;
                // Upload the Brand Image
                Image::make($image_tmp)->save($image_path);
                $brand->brand_image = $imageName;
-            } 
+            }
          }else{
             $brand->brand_image = "";
          }
@@ -116,12 +117,12 @@ class BrandController extends Controller
                //Get Image Extension
                $extension = $image_tmp->getClientOriginalExtension();
                //Generate New Image
-               $imageName = rand(111,99999).'.'.$extension; 
+               $imageName = rand(111,99999).'.'.$extension;
                $image_path = 'front/images/brands/'.$imageName;
                // Upload the Brand Image
                Image::make($image_tmp)->save($image_path);
                $brand->brand_logo = $imageName;
-            } 
+            }
          }else{
             $brand->brand_logo = "";
          }
@@ -142,7 +143,8 @@ class BrandController extends Controller
          $brand->brand_name = $data['brand_name'];
          $brand->brand_discount = $data['brand_discount'];
          $brand->description = $data['description'];
-         $brand->url = $data['url'];
+        //  $brand->url = $data['url'];
+         $brand->url = Str::slug($data['brand_name']);
          $brand->meta_title = $data['meta_title'];
          $brand->meta_description = $data['meta_description'];
          $brand->meta_keywords = $data['meta_keywords'];
@@ -190,4 +192,3 @@ class BrandController extends Controller
     }
 }
 
-    
