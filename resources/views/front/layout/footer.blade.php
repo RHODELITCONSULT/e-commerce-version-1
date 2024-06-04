@@ -64,7 +64,7 @@
                                 <span class="outer-footer__content-title">Company</span>
                                 <ul>
                                     <li>
-                                        <a href="#">About us</a>
+                                        <a href="{{route("about-us")}}">About us</a>
                                     </li>
                                     <li>
                                         <a href="#">Contact us</a>
@@ -73,7 +73,7 @@
                                         <a href="#">FAQ</a>
                                     </li>
                                     <li>
-                                        <a href="#">Terms & Conditions</a>
+                                        <a href="{{ route("terms-and-conditions") }}">Terms & Conditions</a>
                                     </li>
                                     <li>
                                         <a href="#">Privacy Policy</a>

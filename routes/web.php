@@ -6,6 +6,7 @@ use App\Http\Controllers\Front\IndexController;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Front\WishlistController;
+use App\Http\Controllers\Front\AboutUsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,11 @@ Route::namespace('App\Http\Controllers\Front')->group(function () {
     foreach ($catUrls as $key => $url) {
         Route::get($url, 'ProductController@listing');
     }
+
+    // TODO=>ABOUT US ROUTE
+    Route::get("about-us",[AboutUsController::class,'about_us'])->name("about-us");
+    Route::get("terms-and-conditions",[AboutUsController::class,"terms_and_conditions"])->name("terms-and-conditions");
+
 
     // Product Details Page
     Route::get('product/{id}', 'ProductController@detail')->name("product.detail");
@@ -240,6 +246,15 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         // Add Subscriber Email
         Route::post('add-subscriber-email', 'NewsletterController@addSubscriber');
     });
+});
+
+//TODO => ADMIN ABOUT AND TERMS AND CONDITIONS UPDATE/CREATE
+Route::middleware("admin")->prefix("/admin")->group(function(){
+    Route::get("update/about-us",[AboutUsController::class,"admin_view_about"])->name("admin.update.about_us");
+
+    Route::post("update/company-info",[AboutUsController::class,"add_about_us_info"])->name("admin.create.update.about");
+
+    Route::get('update/terms-and-conditions',[AboutUsController::class,'admin_view_terms'])->name('admin.create.update.terms-and-conditions');
 });
 
 // TODO=>PAYSTACK ROUTES
