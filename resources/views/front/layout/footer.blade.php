@@ -69,9 +69,9 @@
                                     <li>
                                         <a href="#">Contact us</a>
                                     </li>
-                                    <li>
+                                    {{-- <li>
                                         <a href="#">FAQ</a>
-                                    </li>
+                                    </li> --}}
                                     <li>
                                         <a href="{{ route("terms-and-conditions") }}">Terms & Conditions</a>
                                     </li>
