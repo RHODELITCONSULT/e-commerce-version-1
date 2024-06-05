@@ -43,7 +43,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">{{ 'Terms-and-Condition' }}</li>
+                            <li class="breadcrumb-item active">{{ 'Privacy-Policy' }}</li>
                         </ol>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
             <div class="container-fluid">
                 <div class="card card-default">
                     <div class="card-header">
-                        <h3 class="card-title">{{ 'Terms & Conditions' }}</h3>
+                        <h3 class="card-title">{{ 'Privacy-Policy' }}</h3>
 
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -80,28 +80,32 @@
                                     </div>
                                 @endif
                                 @php
-                                    $term = \App\Models\About::where("info_type","terms-and-conditions")->first();
+                                    $privacy = \App\Models\About::where('info_type', 'privacy-policy')->first();
+                                    $platform_name = \App\Models\About::latest()->first()->company_name ?? '';
                                 @endphp
-                                <form name="cmsForm" id="cmsForm" action="{{route("admin.create.update.about",['type'=>'terms_and_conditions'])}}" method="post">
+                                <form name="cmsForm" id="cmsForm"
+                                    action="{{ route('admin.create.update.about', ['type' => 'privacy_policy']) }}"
+                                    method="post">
                                     @csrf
                                     <div class="card-body">
                                         <div class="form-group">
                                             <label for="title">Company Name <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" id="title" name="company_name"
-                                                placeholder="Enter Name of Platform"
-                                                value="{{ $term ? $term->company_name : '' }}">
+                                                placeholder="Update the Name of Platform"
+                                                value="{{ $privacy ? $privacy->company_name : $platform_name }}">
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="description">Terms and Conditions <span class="text-danger">*</span></label>
-                                            <textarea class="form-control" rows="9" id="editor" name="terms" placeholder="Enter Terms and Conditions">{{ $term ? $term->terms_and_conditions : '' }}</textarea>
+                                            <label for="description">Privacy Policy <span
+                                                    class="text-danger">*</span></label>
+                                            <textarea class="form-control" rows="4" id="editor" name="privacy" placeholder="Enter Privacy Policy">{{ $privacy ? $privacy->privacy_policy : '' }}</textarea>
                                         </div>
 
 
                                     </div>
                                     <!-- /.card-body -->
                                     <div>
-                                        <button type="submit" class="btn btn-primary">Update Terms and Conditions</button>
+                                        <button type="submit" class="btn btn-primary">Update Privacy Policy</button>
                                     </div>
                                 </form>
                                 <!-- /.form-group -->

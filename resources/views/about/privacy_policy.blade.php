@@ -14,10 +14,10 @@
                         <ul class="breadcrumb__list">
                             <li class="has-separator">
 
-                                <a href="index.html">Home</a></li>
+                                <a href="/">Home</a></li>
                             <li class="is-marked">
 
-                                <a href="about.html">About</a></li>
+                                <a href="privacy_policy">Privacy Policy</a></li>
                         </ul>
                     </div>
                 </div>
@@ -37,13 +37,12 @@
                     <div class="col-lg-12">
                         <div class="about">
                             <div class="about__container">
-                                @if ($about)
-                                <div class="about__info">
-                                    <h2 class="about__h2">Welcome to {{ $about->company_name }}!</h2>
+                                @if ($privacy)
+                                <div class="aboout__inf">
+                                    <h2 class="about__h2">Welcome to {{ $privacy->company_name }}!</h2>
                                     <div class="about__p-wrap">
-                                        <p class="about__p">{{ $about->information }}</p>
+                                        <p class="">{!! $privacy->privacy_policy !!}</p>
                                     </div>
-
                                     <a class="about__link btn--e-secondary" href="/" target="_blank">Shop Now</a>
                                 </div>
                                 @endif

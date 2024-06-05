@@ -17,7 +17,7 @@
                                 <a href="index.html">Home</a></li>
                             <li class="is-marked">
 
-                                <a href="about.html">Terms and Conditions</a></li>
+                                <a href="about.html">About</a></li>
                         </ul>
                     </div>
                 </div>
@@ -37,11 +37,11 @@
                     <div class="col-lg-12">
                         <div class="about">
                             <div class="about__container">
-                                @if ($term)
+                                @if ($about)
                                 <div class="">
-                                    <h2 class="about__h2">Terms and Conditions for {{ $term->company_name }}!</h2>
+                                    <h2 class="about__h2">Welcome to {{ $about->company_name }}!</h2>
                                     <div class="about__p-wrap">
-                                        <p class="" style="text-align: left; line-height:1.6rem; margin:20px 10px;">{!! $term->terms_and_conditions !!}</p>
+                                        <p class="about__p">{!! $about->information !!}</p>
                                     </div>
 
                                     <a class="about__link btn--e-secondary" href="/" target="_blank">Shop Now</a>

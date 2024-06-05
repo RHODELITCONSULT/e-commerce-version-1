@@ -36,6 +36,7 @@ Route::namespace('App\Http\Controllers\Front')->group(function () {
     // TODO=>ABOUT US ROUTE
     Route::get("about-us",[AboutUsController::class,'about_us'])->name("about-us");
     Route::get("terms-and-conditions",[AboutUsController::class,"terms_and_conditions"])->name("terms-and-conditions");
+    Route::get("privacy-policy",[AboutUsController::class,"privacy_policy"])->name("privacy-policy");
 
 
     // Product Details Page
@@ -252,9 +253,11 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
 Route::middleware("admin")->prefix("/admin")->group(function(){
     Route::get("update/about-us",[AboutUsController::class,"admin_view_about"])->name("admin.update.about_us");
 
-    Route::post("update/company-info",[AboutUsController::class,"add_about_us_info"])->name("admin.create.update.about");
-
     Route::get('update/terms-and-conditions',[AboutUsController::class,'admin_view_terms'])->name('admin.create.update.terms-and-conditions');
+
+    Route::get('update/privacy-policy',[AboutUsController::class,'admin_view_privacy_policy'])->name('admin.create.update.privacy-policy');
+
+    Route::post("update/company-info",[AboutUsController::class,"add_about_us_info"])->name("admin.create.update.about");
 });
 
 // TODO=>PAYSTACK ROUTES

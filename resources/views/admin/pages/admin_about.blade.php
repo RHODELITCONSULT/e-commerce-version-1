@@ -1,6 +1,36 @@
 @extends('admin.layout.layout')
 @section('content')
+<style>
+    body {
+        background-color: #2C2C2C;
+        color: #FFFFFF;
+    }
 
+    .cke_editable {
+        background-color: #2C2C2C !important;
+        color: #FFFFFF !important;
+    }
+
+    .cke_top,
+    .cke_bottom {
+        background-color: #1B1B1B !important;
+    }
+
+    .cke_toolgroup,
+    .cke_button {
+        background-color: #333333 !important;
+        border-color: #444444 !important;
+    }
+
+    .cke_button__save_icon,
+    .cke_button__bold_icon,
+    .cke_button__italic_icon,
+    .cke_button__underline_icon,
+    .cke_button__strike_icon,
+    .cke_button__link_icon {
+        filter: invert(1);
+    }
+</style>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -65,7 +95,7 @@
 
                                         <div class="form-group">
                                             <label for="description">Information <span class="text-danger">*</span></label>
-                                            <textarea class="form-control" rows="9" id="information" name="information" placeholder="Enter About-Us Information">{{ $about ? $about->information : '' }}</textarea>
+                                            <textarea class="form-control" rows="9" id="editor" name="information" placeholder="Enter About-Us Information">{{ $about ? $about->information : '' }}</textarea>
                                         </div>
 
 
@@ -93,5 +123,17 @@
         </section>
         <!-- /.content -->
     </div>
-
+    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('editor', {
+            uiColor: '#2C2C2C',
+            on: {
+                instanceReady: function(evt) {
+                    var editor = evt.editor;
+                    editor.document.getBody().setStyle('background-color', '#2C2C2C');
+                    editor.document.getBody().setStyle('color', '#FFFFFF');
+                }
+            }
+        });
+    </script>
 @endsection

@@ -19,7 +19,7 @@ class AboutUsController extends Controller
     public function about_us(){
         try{
             $about = About::query()->where("info_type","about-us")->first();
-            return view('about.about',["about"=>$about]);
+            return view('about.about-us',["about"=>$about]);
         }catch(\Exception $e){
             Log::error("ABOUT_US_ERROR".$e->getMessage());
             return back()->with('error_message',"Sorry, about us page not loading up at the moment");
@@ -32,7 +32,16 @@ class AboutUsController extends Controller
             return view('about.terms_and_conditions',["term"=>$term]);
         }catch(\Exception $e){
             Log::error("ABOUT_US_ERROR".$e->getMessage());
-            return back()->with('error_message',"Sorry, about us page not loading up at the moment");
+            return back()->with('error_message',"Sorry, terms and conditions page not loading up at the moment");
+        }
+    }
+    public function privacy_policy(){
+        try{
+            $privacy = About::query()->where("info_type","privacy-policy")->first();
+            return view('about.privacy_policy',["privacy"=>$privacy]);
+        }catch(\Exception $e){
+            Log::error("PRIVACY_POLICY_ERROR".$e->getMessage());
+            return back()->with('error_message',"Sorry, privacy and policy page not loading up at the moment");
         }
     }
 
@@ -48,6 +57,14 @@ class AboutUsController extends Controller
     public function admin_view_terms(){
         try{
             return view('admin.pages.terms');
+        }catch(\Exception $e){
+            Log::error("ABOUT_US_ERROR".$e->getMessage());
+            return back()->with('error_message',"Sorry, terms and conditions page not loading up at the moment");
+        }
+    }
+    public function admin_view_privacy_policy(){
+        try{
+            return view('admin.pages.admin_privacy_policy');
         }catch(\Exception $e){
             Log::error("ABOUT_US_ERROR".$e->getMessage());
             return back()->with('error_message',"Sorry, terms and conditions page not loading up at the moment");
@@ -90,6 +107,19 @@ class AboutUsController extends Controller
                         "info_type"=>"terms-and-conditions",
                         "company_name"=>$request->company_name,
                         "terms_and_conditions"=>$request->terms
+                    ]
+                );
+            }
+            elseif(request()->input("type")==="privacy_policy"){
+                $company_info = About::query()->updateOrCreate(
+                    [
+                        "info_type" =>"privacy-policy"
+                    ],
+                    [
+
+                        "info_type"=>"privacy-policy",
+                        "company_name"=>$request->company_name,
+                        "privacy_policy"=>$request->privacy
                     ]
                 );
             }
