@@ -3,21 +3,22 @@
 <div class="app-content">
     <!--====== Primary Slider ======-->
     <div class="s-skeleton s-skeleton--h-600 s-skeleton--bg-grey">
-    <div class="owl-carousel primary-style-1" id="sitemakers-slider">
-        @foreach($homeSliderBanners as $sliderBanner)
-        <div class="sitemakers-slide sitemakers-slide--1" style="background-image: url('{{ asset('front/images/banners/'.$sliderBanner['image']) }}');" alt="{{$sliderBanner['alt']}}">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="slider-content slider-content--animation">
-                            <span class="content-span-2 u-c-secondary">{{$sliderBanner['title']}}</span>
-                            <a class="shop-now-link btn--e-brand" href="{{$sliderBanner['link']}}">SHOP NOW</a></div>
+        <div class="owl-carousel primary-style-1" id="sitemakers-slider">
+            @foreach($homeSliderBanners as $sliderBanner)
+            <div class="sitemakers-slide sitemakers-slide--1" style="background-image: url('{{ asset('front/images/banners/'.$sliderBanner['image']) }}');" alt="{{$sliderBanner['alt']}}">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="slider-content slider-content--animation">
+                                <span class="content-span-2 u-c-secondary">{{$sliderBanner['title']}}</span>
+                                <a class="shop-now-link btn--e-brand" href="{{$sliderBanner['link']}}">SHOP NOW</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+            @endforeach
         </div>
-        @endforeach
-    </div>
     </div>
     <!--====== End - Primary Slider ======-->
     <!--====== Section 1 ======-->
@@ -92,119 +93,119 @@
                                 <button class="btn filter__btn filter__btn--style-1" type="button" data-filter=".discountedproducts">DISCOUNTED PRODUCTS</button>
                             </div>
                             <div class="filter__category-wrapper">
-                    <button class="btn filter__btn filter__btn--style-1" type="button" data-filter=".featuredproducts">FEATURED PRODUCTS</button>
-                </div>
-            </div>
-    <div class="filter__grid-wrapper u-s-m-t-30">
-    <div class="row">
-    @foreach($newProducts as $product)
-    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item newarrivals">
-        <div class="product-o product-o--hover-on product-o--radius">
-            <div class="product-o__wrap">
-                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="{{ route("product.detail",['id'=>$product['id']]) }}">
-                @if(isset($product['images'][0]['image'])&& !empty($product['images'][0]['image']))
-                <img class="aspect__img" src="{{ asset('front/images/products/small/'.$product['images'][0]['image']) }}" alt="">
-                @else
-                <img class="aspect__img" src="{{ asset('front/images/product/sitemakers-tshirt.png') }}" alt="">
-            @endif
-            </a>
-            </div>
-            <span class="product-o__category">
-            <a href="shop-side-version-2.html">{{ $product['brand']['brand_name'] }}</a></span>
-            <span class="product-o__name">
-            <a href="product-detail.html">{{ $product['product_name'] }}</a></span>
-            <div class="product-o__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                <span class="product-o__review">(25)</span>
-            </div>
-            <span class="product-o__price">GHC{{$product['final_price']}}
-                @if($product['discount_type']!="")
-                <span class="product-o__discount">GHC{{$product['product_price']}}</span></span>
-                @endif
-        </div>
-    </div>
-    @endforeach
-    @foreach($bestSellers as $product)
-    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item bestsellers">
-        <div class="product-o product-o--hover-on product-o--radius">
-            <div class="product-o__wrap">
-                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="{{ route("product.detail",['id'=>$product['id']]) }}">
-                @if(isset($product['images'][0]['image'])&& !empty($product['images'][0]['image']))
-                <img class="aspect__img" src="{{ asset('front/images/products/small/'.$product['images'][0]['image']) }}" alt="">
-                @else
-                <img class="aspect__img" src="{{ asset('front/images/product/sitemakers-tshirt.png') }}" alt="">
-            @endif
-            </a>
-            </div>
-            <span class="product-o__category">
-            <a href="shop-side-version-2.html">{{ $product['brand']['brand_name'] }}</a></span>
-            <span class="product-o__name">
-            <a href="product-detail.html">{{ $product['product_name'] }}</a></span>
-            <div class="product-o__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                <span class="product-o__review">(25)</span>
-            </div>
-            <span class="product-o__price">GHC{{$product['final_price']}}
-                @if($product['discount_type']!="")
-                <span class="product-o__discount">GHC{{$product['product_price']}}</span></span>
-                @endif
-        </div>
-    </div>
-    @endforeach
-    @foreach($discountedProducts as $product)
-    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item discountedproducts">
-        <div class="product-o product-o--hover-on product-o--radius">
-            <div class="product-o__wrap">
-                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="{{ route("product.detail",['id'=>$product['id']]) }}">
-                @if(isset($product['images'][0]['image'])&& !empty($product['images'][0]['image']))
-                <img class="aspect__img" src="{{ asset('front/images/products/small/'.$product['images'][0]['image']) }}" alt="">
-                @else
-                <img class="aspect__img" src="{{ asset('front/images/product/sitemakers-tshirt.png') }}" alt="">
-            @endif
-            </a>
-            </div>
-            <span class="product-o__category">
-            <a href="shop-side-version-2.html">{{ $product['brand']['brand_name'] }}</a></span>
-            <span class="product-o__name">
-            <a href="product-detail.html">{{ $product['product_name'] }}</a></span>
-            <div class="product-o__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                <span class="product-o__review">(25)</span>
-            </div>
-            <span class="product-o__price">GHC{{$product['final_price']}}
-                @if($product['discount_type']!="")
-                <span class="product-o__discount">GHC{{$product['product_price']}}</span></span>
-                @endif
-        </div>
-    </div>
-    @endforeach
-    @foreach($featuredProducts as $product)
-    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item featuredproducts">
-        <div class="product-o product-o--hover-on product-o--radius">
-            <div class="product-o__wrap">
-                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="{{ route("product.detail",['id'=>$product['id']]) }}">
-                @if(isset($product['images'][0]['image'])&& !empty($product['images'][0]['image']))
-                <img class="aspect__img" src="{{ asset('front/images/products/small/'.$product['images'][0]['image']) }}" alt="">
-                @else
-                <img class="aspect__img" src="{{ asset('front/images/product/sitemakers-tshirt.png') }}" alt="">
-            @endif
-            </a>
-            </div>
-            <span class="product-o__category">
-            <a href="shop-side-version-2.html">{{ $product['brand']['brand_name'] }}</a></span>
-            <span class="product-o__name">
-            <a href="product-detail.html">{{ $product['product_name'] }}</a></span>
-            <div class="product-o__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                <span class="product-o__review">(25)</span>
-            </div>
-            <span class="product-o__price">GHC{{$product['final_price']}}
-                @if($product['discount_type']!="")
-                <span class="product-o__discount">GHC{{$product['product_price']}}</span></span>
-                @endif
-        </div>
-    </div>
-    @endforeach
-        </div>
-        </div>
-        </div>
-        <!-- <div class="col-lg-12">
+                                <button class="btn filter__btn filter__btn--style-1" type="button" data-filter=".featuredproducts">FEATURED PRODUCTS</button>
+                            </div>
+                        </div>
+                        <div class="filter__grid-wrapper u-s-m-t-30">
+                            <div class="row">
+                                @foreach($newProducts as $product)
+                                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item newarrivals">
+                                    <div class="product-o product-o--hover-on product-o--radius">
+                                        <div class="product-o__wrap">
+                                            <a class="aspect aspect--bg-grey aspect--square u-d-block" href="{{ url('product/'.$product['id'])}}">
+                                                @if(isset($product['images'][0]['image'])&& !empty($product['images'][0]['image']))
+                                                <img class="aspect__img" src="{{ asset('front/images/products/small/'.$product['images'][0]['image']) }}" alt="">
+                                                @else
+                                                <img class="aspect__img" src="{{ asset('front/images/product/sitemakers-tshirt.png') }}" alt="">
+                                                @endif
+                                            </a>
+                                        </div>
+                                        <span class="product-o__category">
+                                            <a href="shop-side-version-2.html">{{ $product['brand']['brand_name'] }}</a></span>
+                                        <span class="product-o__name">
+                                            <a href="{{ url('product/'.$product['id'])}}">{{ $product['product_name'] }}</a></span>
+                                        <div class="product-o__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                            <span class="product-o__review">(25)</span>
+                                        </div>
+                                        <span class="product-o__price">GHC{{$product['final_price']}}
+                                            @if($product['discount_type']!="")
+                                            <span class="product-o__discount">GHC{{$product['product_price']}}</span></span>
+                                        @endif
+                                    </div>
+                                </div>
+                                @endforeach
+                                @foreach($bestSellers as $product)
+                                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item bestsellers">
+                                    <div class="product-o product-o--hover-on product-o--radius">
+                                        <div class="product-o__wrap">
+                                            <a class="aspect aspect--bg-grey aspect--square u-d-block" href="{{ url('product/'.$product['id'])}}">
+                                                @if(isset($product['images'][0]['image'])&& !empty($product['images'][0]['image']))
+                                                <img class="aspect__img" src="{{ asset('front/images/products/small/'.$product['images'][0]['image']) }}" alt="">
+                                                @else
+                                                <img class="aspect__img" src="{{ asset('front/images/product/sitemakers-tshirt.png') }}" alt="">
+                                                @endif
+                                            </a>
+                                        </div>
+                                        <span class="product-o__category">
+                                            <a href="shop-side-version-2.html">{{ $product['brand']['brand_name'] }}</a></span>
+                                        <span class="product-o__name">
+                                            <a href="{{ url('product/'.$product['id'])}}">{{ $product['product_name'] }}</a></span>
+                                        <div class="product-o__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                            <span class="product-o__review">(25)</span>
+                                        </div>
+                                        <span class="product-o__price">GHC{{$product['final_price']}}
+                                            @if($product['discount_type']!="")
+                                            <span class="product-o__discount">GHC{{$product['product_price']}}</span></span>
+                                        @endif
+                                    </div>
+                                </div>
+                                @endforeach
+                                @foreach($discountedProducts as $product)
+                                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item discountedproducts">
+                                    <div class="product-o product-o--hover-on product-o--radius">
+                                        <div class="product-o__wrap">
+                                            <a class="aspect aspect--bg-grey aspect--square u-d-block" href="{{ url('product/'.$product['id'])}}">
+                                                @if(isset($product['images'][0]['image'])&& !empty($product['images'][0]['image']))
+                                                <img class="aspect__img" src="{{ asset('front/images/products/small/'.$product['images'][0]['image']) }}" alt="">
+                                                @else
+                                                <img class="aspect__img" src="{{ asset('front/images/product/sitemakers-tshirt.png') }}" alt="">
+                                                @endif
+                                            </a>
+                                        </div>
+                                        <span class="product-o__category">
+                                            <a href="shop-side-version-2.html">{{ $product['brand']['brand_name'] }}</a></span>
+                                        <span class="product-o__name">
+                                            <a href="{{ url('product/'.$product['id'])}}">{{ $product['product_name'] }}</a></span>
+                                        <div class="product-o__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                            <span class="product-o__review">(25)</span>
+                                        </div>
+                                        <span class="product-o__price">GHC{{$product['final_price']}}
+                                            @if($product['discount_type']!="")
+                                            <span class="product-o__discount">GHC{{$product['product_price']}}</span></span>
+                                        @endif
+                                    </div>
+                                </div>
+                                @endforeach
+                                @foreach($featuredProducts as $product)
+                                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item featuredproducts">
+                                    <div class="product-o product-o--hover-on product-o--radius">
+                                        <div class="product-o__wrap">
+                                            <a class="aspect aspect--bg-grey aspect--square u-d-block" href="{{ url('product/'.$product['id'])}}">
+                                                @if(isset($product['images'][0]['image'])&& !empty($product['images'][0]['image']))
+                                                <img class="aspect__img" src="{{ asset('front/images/products/small/'.$product['images'][0]['image']) }}" alt="">
+                                                @else
+                                                <img class="aspect__img" src="{{ asset('front/images/product/sitemakers-tshirt.png') }}" alt="">
+                                                @endif
+                                            </a>
+                                        </div>
+                                        <span class="product-o__category">
+                                            <a href="shop-side-version-2.html">{{ $product['brand']['brand_name'] }}</a></span>
+                                        <span class="product-o__name">
+                                            <a href="{{ url('product/'.$product['id'])}}">{{ $product['product_name'] }}</a></span>
+                                        <div class="product-o__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                            <span class="product-o__review">(25)</span>
+                                        </div>
+                                        <span class="product-o__price">GHC{{$product['final_price']}}
+                                            @if($product['discount_type']!="")
+                                            <span class="product-o__discount">GHC{{$product['product_price']}}</span></span>
+                                        @endif
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-12">
             <div class="load-more">
                             <button class="btn btn--e-brand" type="button">View More</button>
                         </div>
@@ -237,28 +238,28 @@
                     <div class="owl-carousel product-slider" data-item="4">
                         @foreach($newProducts as $product)
                         <div class="u-s-m-b-30">
-                        <div class="product-o product-o--hover-on product-o--radius">
-                        <div class="product-o__wrap">
-                                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
-                                @if(isset($product['images'][0]['image'])&& !empty($product['images'][0]['image']))
-                                <img class="aspect__img" src="{{ asset('front/images/products/small/'.$product['images'][0]['image']) }}" alt="">
-                                @else
-                                <img class="aspect__img" src="{{ asset('front/images/product/sitemakers-tshirt.png') }}" alt="">
-                            @endif
-                            </a>
-                            </div>
-                            <span class="product-o__category">
-                            <a href="shop-side-version-2.html">{{ $product['brand']['brand_name'] }}</a></span>
-                            <span class="product-o__name">
-                            <a href="product-detail.html">{{ $product['product_name'] }}</a></span>
-                            <div class="product-o__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                                <span class="product-o__review">(25)</span>
-                            </div>
-                            <span class="product-o__price">GHC{{$product['final_price']}}
-                                @if($product['discount_type']!="")
-                                <span class="product-o__discount">GHC{{$product['product_price']}}</span></span>
+                            <div class="product-o product-o--hover-on product-o--radius">
+                                <div class="product-o__wrap">
+                                    <a class="aspect aspect--bg-grey aspect--square u-d-block" href="{{ url('product/'.$product['id'])}}">
+                                        @if(isset($product['images'][0]['image'])&& !empty($product['images'][0]['image']))
+                                        <img class="aspect__img" src="{{ asset('front/images/products/small/'.$product['images'][0]['image']) }}" alt="">
+                                        @else
+                                        <img class="aspect__img" src="{{ asset('front/images/product/sitemakers-tshirt.png') }}" alt="">
+                                        @endif
+                                    </a>
+                                </div>
+                                <span class="product-o__category">
+                                    <a href="shop-side-version-2.html">{{ $product['brand']['brand_name'] }}</a></span>
+                                <span class="product-o__name">
+                                    <a href="{{ url('product/'.$product['id'])}}">{{ $product['product_name'] }}</a></span>
+                                <div class="product-o__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                    <span class="product-o__review">(25)</span>
+                                </div>
+                                <span class="product-o__price">GHC{{$product['final_price']}}
+                                    @if($product['discount_type']!="")
+                                    <span class="product-o__discount">GHC{{$product['product_price']}}</span></span>
                                 @endif
-                        </div>
+                            </div>
                         </div>
                         @endforeach
                     </div>
@@ -294,30 +295,30 @@
             <div class="container">
                 <div class="slider-fouc">
                     <div class="owl-carousel product-slider" data-item="4">
-                          @foreach($featuredProducts as $product)
+                        @foreach($featuredProducts as $product)
                         <div class="u-s-m-b-30">
                             <div class="product-o product-o--hover-on product-o--radius">
-            <div class="product-o__wrap">
-                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
-                @if(isset($product['images'][0]['image'])&& !empty($product['images'][0]['image']))
-                <img class="aspect__img" src="{{ asset('front/images/products/small/'.$product['images'][0]['image']) }}" alt="">
-                @else
-                <img class="aspect__img" src="{{ asset('front/images/product/sitemakers-tshirt.png') }}" alt="">
-            @endif
-            </a>
-            </div>
-            <span class="product-o__category">
-            <a href="shop-side-version-2.html">{{ $product['brand']['brand_name'] }}</a></span>
-            <span class="product-o__name">
-            <a href="product-detail.html">{{ $product['product_name'] }}</a></span>
-            <div class="product-o__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                <span class="product-o__review">(25)</span>
-            </div>
-            <span class="product-o__price">GHC{{$product['final_price']}}
-                @if($product['discount_type']!="")
-                <span class="product-o__discount">GHC{{$product['product_price']}}</span></span>
-                @endif
-        </div>
+                                <div class="product-o__wrap">
+                                    <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
+                                        @if(isset($product['images'][0]['image'])&& !empty($product['images'][0]['image']))
+                                        <img class="aspect__img" src="{{ asset('front/images/products/small/'.$product['images'][0]['image']) }}" alt="">
+                                        @else
+                                        <img class="aspect__img" src="{{ asset('front/images/product/sitemakers-tshirt.png') }}" alt="">
+                                        @endif
+                                    </a>
+                                </div>
+                                <span class="product-o__category">
+                                    <a href="shop-side-version-2.html">{{ $product['brand']['brand_name'] }}</a></span>
+                                <span class="product-o__name">
+                                    <a href="{{ url('product/'.$product['id'])}}">{{ $product['product_name'] }}</a></span>
+                                <div class="product-o__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                    <span class="product-o__review">(25)</span>
+                                </div>
+                                <span class="product-o__price">GHC{{$product['final_price']}}
+                                    @if($product['discount_type']!="")
+                                    <span class="product-o__discount">GHC{{$product['product_price']}}</span></span>
+                                @endif
+                            </div>
                         </div>
                         @endforeach
                     </div>
@@ -332,5 +333,5 @@
         <!--====== End - Section Content ======-->
     </div>
     <!--====== End - Section 5 ======-->
-</d/iv>
-@endsection
+    </d /iv>
+    @endsection

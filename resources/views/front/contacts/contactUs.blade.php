@@ -1,6 +1,4 @@
-<?php
-
-use App\Models\ContactUs; ?>
+<?php use App\Models\ContactUs; ?>
 @extends('front.layout.layout')
 @section('content')
 <!--====== App Content ======-->
@@ -17,12 +15,10 @@ use App\Models\ContactUs; ?>
                         <ul class="breadcrumb__list">
                             <li class="has-separator">
 
-                                <a href="index.html">Home</a>
-                            </li>
+                                <a href="index.html">Home</a></li>
                             <li class="is-marked">
 
-                                <a href="contact.html">Contact</a>
-                            </li>
+                                <a href="contact.html">Contact</a></li>
                         </ul>
                     </div>
                 </div>
@@ -89,5 +85,5 @@ use App\Models\ContactUs; ?>
 
     <!--  -->
 </div>
-<!--====== End - App Content ======-->
+<!--====== End - App Content ======-->   
 @endsection

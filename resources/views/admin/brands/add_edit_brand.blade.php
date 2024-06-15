@@ -57,7 +57,7 @@
             </div>
             <div class="form-group">
               <label for="brand_image">Brand Image</label>
-              <input type="file" class="form-control" id="brand_image" name="brand_image">
+              <input type="file" class="form-control" id="brand_image" name="brand_image"> 
               @if(!empty($brand['brand_image']))
               <a target="blank" href="{{ url('front/images/brands/'.$brand['brand_image']) }}"><img style="width:50px; margin: 10px;" src="{{ asset('front/images/brands/'.$brand['brand_image']) }}"></a>
               <a style='color:#3f6ed3;' class="confirmDelete"  title="Delete Brand Image" href="javascript:void(0)" record="brand-image" recordid="{{ $brand['id'] }}"><i style="color:#fff" class="fas fa-trash"></i></a>
@@ -65,7 +65,7 @@
             </div>
             <div class="form-group">
               <label for="brand_logo">Brand Logo</label>
-              <input type="file" class="form-control" id="brand_logo" name="brand_logo">
+              <input type="file" class="form-control" id="brand_logo" name="brand_logo"> 
               @if(!empty($brand['brand_logo']))
               <a target="blank" href="{{ url('front/images/brands/'.$brand['brand_logo']) }}"><img style="width:50px; margin: 10px;" src="{{ asset('front/images/brands/'.$brand['brand_logo']) }}"></a>
               <a style='color:#3f6ed3;' class="confirmDelete"  title="Delete Brand Logo" href="javascript:void(0)" record="brand-logo" recordid="{{ $brand['id'] }}"><i style="color:#fff" class="fas fa-trash"></i></a>
@@ -75,10 +75,10 @@
               <label for="brand_discount">Brand Discount</label>
               <input type="text" class="form-control" id="brand_discount" name="brand_discount" placeholder="Enter Brand Discount" @if(!empty($brand['brand_discount'])) value="{{ $brand['brand_discount'] }}" @else value="{{ old('brand_discount') }}" @endif>
             </div>
-            {{-- <div class="form-group">
+            <div class="form-group">
               <label for="url">Brand URL*</label>
               <input type="text" class="form-control" id="url" name="url" placeholder="Enter Brand URL" @if(!empty($brand['url'])) value="{{ $brand['url'] }}" @else value="{{ old('url') }}" @endif>
-            </div> --}}
+            </div>
             <div class="form-group">
               <label for="description">Brand Description</label>
               <textarea class="form-control" rows="3" id="description" name="description" placeholder="Enter Brand Description">@if(!empty($brand['description'])) {{ $brand['description'] }} @else {{ old('description') }} @endif</textarea>
@@ -95,7 +95,7 @@
               <label for="meta_keywords">Meta Keywords</label>
               <input type="text" class="form-control" id="meta_keywords" name="meta_keywords" placeholder="Enter Meta Keywords" @if(!empty($brand['meta_keywords'])) value="{{ $brand['meta_keywords'] }}" @else value="{{ old('meta_keywords') }}" @endif>
             </div>
-
+           
             </div>
                 <!-- /.card-body -->
 

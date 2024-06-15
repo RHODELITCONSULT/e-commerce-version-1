@@ -64,10 +64,10 @@
                 <option @if(isset($category['parent_id'])&&$category['parent_id']==$cat['id']) selected @endif value="{{ $cat['id'] }}  ">{{ $cat['category_name'] }}</option>
                 @if(!empty($cat['subcategories']))
                   @foreach($cat['subcategories'] as $subcat)
-                    <option value="{{ $subcat['id'] }}"@if(isset($category['parent_id'])&&$category['parent_id']==$subcat['id']) selected @endif>&nbsp;&nbsp;&raquo;&nbsp;&nbsp;&nbsp;{{ $subcat['category_name'] }}</option>
+                    <option value="{{ $subcat['id'] }}"@if(isset($category['parent_id'])&&$category['parent_id']==$subcat['id']) selected @endif>&nbsp;&nbsp;&raquo;&nbsp;&nbsp;&nbsp;{{ $subcat['category_name'] }}</option> 
                     @if(!empty($subcat['subcategories']))
                         @foreach($subcat['subcategories'] as $subsubcat)
-                          <option value="{{ $subcat['id'] }}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&raquo;&nbsp;&nbsp;{{ $subsubcat['category_name'] }}</option>
+                          <option value="{{ $subcat['id'] }}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&raquo;&nbsp;&nbsp;{{ $subsubcat['category_name'] }}</option> 
                         @endforeach
                       @endif
                   @endforeach
@@ -75,10 +75,10 @@
               @endforeach
             </select>
             </div>
-
+         
             <div class="form-group">
               <label for="category_image">Category Image</label>
-              <input type="file" class="form-control" id="category_image" name="category_image">
+              <input type="file" class="form-control" id="category_image" name="category_image"> 
               @if(!empty($category['category_image']))
               <a target="blank" href="{{ url('front/images/categories/'.$category['category_image']) }}"><img style="width:50px; margin: 10px;" src="{{ asset('front/images/categories/'.$category['category_image']) }}"></a>
               <a style='color:#3f6ed3;' class="confirmDelete"  title="Delete Category Image" href="javascript:void(0)" record="category-image" recordid="{{ $category['id'] }}"><i style="color:#fff" class="fas fa-trash"></i></a>
@@ -88,10 +88,10 @@
               <label for="category_discount">Category Discount</label>
               <input type="text" class="form-control" id="category_discount" name="category_discount" placeholder="Enter Category Discount" @if(!empty($category['category_discount'])) value="{{ $category['category_discount'] }}" @else value="{{ old('category_discount') }}" @endif>
             </div>
-            {{-- <div class="form-group">
+            <div class="form-group">
               <label for="url">Category URL*</label>
               <input type="text" class="form-control" id="url" name="url" placeholder="Enter Category URL" @if(!empty($category['url'])) value="{{ $category['url'] }}" @else value="{{ old('url') }}" @endif>
-            </div> --}}
+            </div>
             <div class="form-group">
               <label for="description">Category Description</label>
               <textarea class="form-control" rows="3" id="description" name="description" placeholder="Enter Category Description">@if(!empty($category['description'])) {{ $category['description'] }} @else {{ old('description') }} @endif</textarea>
@@ -108,7 +108,7 @@
               <label for="meta_keywords">Meta Keywords</label>
               <input type="text" class="form-control" id="meta_keywords" name="meta_keywords" placeholder="Enter Meta Keywords" @if(!empty($category['meta_keywords'])) value="{{ $category['meta_keywords'] }}" @else value="{{ old('meta_keywords') }}" @endif>
             </div>
-
+           
             </div>
                 <!-- /.card-body -->
 

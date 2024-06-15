@@ -78,6 +78,9 @@ Route::namespace('App\Http\Controllers\Front')->group(function () {
     // Search Product
     Route::get('search-products', 'ProductController@listing');
 
+    // Contact Us
+    Route::match(['get', 'post'], '/contacts/contactUs', 'ContactUsController@contactUs');
+
     Route::group(['middleware' => ['auth']], function () {
 
         // User Account
