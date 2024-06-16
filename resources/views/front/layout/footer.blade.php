@@ -67,7 +67,7 @@
                                         <a href="{{route("about-us")}}">About us</a>
                                     </li>
                                     <li>
-                                        <a href="#">Contact us</a>
+                                        <a href="{{route('contact-us')}}">Contact us</a>
                                     </li>
                                     {{-- <li>
                                         <a href="#">FAQ</a>

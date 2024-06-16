@@ -7,6 +7,7 @@ use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Front\WishlistController;
 use App\Http\Controllers\Front\AboutUsController;
+use App\Http\Controllers\Front\ContactUsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,9 @@ Route::namespace('App\Http\Controllers\Front')->group(function () {
     Route::get("about-us",[AboutUsController::class,'about_us'])->name("about-us");
     Route::get("terms-and-conditions",[AboutUsController::class,"terms_and_conditions"])->name("terms-and-conditions");
     Route::get("privacy-policy",[AboutUsController::class,"privacy_policy"])->name("privacy-policy");
+
+    // TODO=> CONTACT US PAGE
+    Route::get('/contact-us', [ContactUsController::class,'contactUs'])->name('contact-us');
 
 
     // Product Details Page
