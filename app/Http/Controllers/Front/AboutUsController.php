@@ -84,7 +84,12 @@ class AboutUsController extends Controller
                 return back()->with('error_message',$validation->errors()->first());
             }
 
-            if(request()->input("type")==="about_us"){
+            $user = Auth::guard('admin')->user();
+            if(!$user){
+                return back()->with('error_message',"Sorry, you must be an admin to access this site");
+            }
+
+            if(request()->input("type")==="about-us"){
                 $company_info = About::query()->updateOrCreate(
                     [
                         "info_type" =>"about-us"
@@ -123,21 +128,10 @@ class AboutUsController extends Controller
                     ]
                 );
             }
-
-            if($company_info){
-                return back()->with('success_message',"Platform Information has been successfully updated");
-            }
-            else{
-                return back()->with('error_message',"Sorry, Platform information update encountered a problem");
-            }
-
-            $user = Auth::guard('admin')->user();
-            if(!$user){
-                return back()->with('error_message',"Sorry, you must be an admin to access this site");
-            }
+            return back()->with('success_message',"Platform Information has been successfully updated");
 
         }catch(\Exception $e){
-            Log::error("ABOUT_US_ERROR".$e->getMessage());
+            Log::error("ABOUT_US_ERROR".$e);
             return back()->with('error_message',"Sorry, Site encountered a problem please try again later!!");
         }
     }
