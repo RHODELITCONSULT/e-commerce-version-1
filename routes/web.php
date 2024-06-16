@@ -42,6 +42,9 @@ Route::namespace('App\Http\Controllers\Front')->group(function () {
     // TODO=> CONTACT US PAGE
     Route::get('/contact-us', [ContactUsController::class,'contactUs'])->name('contact-us');
 
+    //TODO=> MESSAGE THE VENDOR
+    Route::post("message-us",[ContactUsController::class,'message'])->name('message:us');
+
 
     // Product Details Page
     Route::get('product/{id}', 'ProductController@detail')->name("product.detail");
@@ -212,6 +215,12 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('update-coupon-status', 'CouponsController@updateCouponStatus');
         Route::get('delete-coupon/{id?}', 'CouponsController@deleteCoupon');
         Route::match(['get', 'post'], 'add-edit-coupon/{id?}', 'CouponsController@addEditCoupon');
+
+        //Todo=>Messages
+        Route::get('inbox',[ContactUsController::class,'all_messages'])->name('messages:all');
+        Route::get('inbox/message/read/{id}',[ContactUsController::class,'read_message'])->name('message:read');
+        Route::get('inbox/message/reply/{id}',[ContactUsController::class,'compose_message'])->name('message:reply');
+        Route::post('inbox/reply/{id}',[ContactUsController::class,'reply_message'])->name('send:reply');
 
         // Users
         Route::get('users', 'Usercontroller@users');

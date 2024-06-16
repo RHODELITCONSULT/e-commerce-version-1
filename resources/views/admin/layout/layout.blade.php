@@ -66,11 +66,11 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ url('admin/js/pages/dashboard2.js') }}"></script>
 <!-- Custom JS -->
-<script src="{{ url('admin/js/custom.js') }}"></script> 
+<script src="{{ url('admin/js/custom.js') }}"></script>
 <!-- DataTables  & Plugins -->
 <script src="{{ url('admin/plugins/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ url('admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-<script src="{{ url('admin/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script> 
+<script src="{{ url('admin/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
 <script>
   $(function () {
     $("#cmspages").DataTable();
