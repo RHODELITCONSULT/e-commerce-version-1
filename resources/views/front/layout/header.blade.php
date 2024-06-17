@@ -801,7 +801,7 @@ $totalCartItems = totalCartItems();
                 </li>
                 @endforeach
                 <li>
-                    <a href="listing.html">FEATURED PRODUCTS</a>
+                    <a href="{{ url('product/'.$product['id'])}}">FEATURED PRODUCTS</a>
                 </li>
             </ul>
             <!--====== End - List ======-->
