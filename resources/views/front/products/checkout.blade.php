@@ -1,4 +1,6 @@
-<?php use App\Models\Product; ?>
+<?php
+
+use App\Models\Product; ?>
 @extends('front.layout.layout')
 @section('content')
 <!--====== App Content ======-->
@@ -15,10 +17,12 @@
                         <ul class="breadcrumb__list">
                             <li class="has-separator">
 
-                                <a href="index.html">Home</a></li>
+                                <a href="index.html">Home</a>
+                            </li>
                             <li class="is-marked">
 
-                                <a href="checkout.html">Checkout</a></li>
+                                <a href="checkout.html">Checkout</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -37,8 +41,8 @@
                     @if(Session::has('error_message'))
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         <strong>Error:</strong> {{ Session::get('error_message') }}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="border: 0px; float:right;">
-                                <span aria-hidden="true">&times;</span>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="border: 0px; float:right;">
+                            <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     @endif
@@ -100,7 +104,7 @@
                                         <label class="gl-label" for="billing-country">COUNTRY *</label><select class="select-box select-box--primary-style" id="delivery_country" name="delivery_country">
                                             <option selected value="">Choose Country</option>
                                             @foreach($countries as $country)
-                                                <option value="{{ $country['country_name'] }}"@if($country['country_name']==Auth::user()->country) selected @endif>{{ $country['country_name'] }}</option>
+                                            <option value="{{ $country['country_name'] }}" @if($country['country_name']==Auth::user()->country) selected @endif>{{ $country['country_name'] }}</option>
                                             @endforeach
                                         </select>
                                         <p id="delivery-delivery_country"></p>
@@ -153,23 +157,24 @@
                                                 <div class="o-card__img-wrap">
                                                     @if(isset($item['product']['images'][0]['image'])&& !empty($item['product']['images'][0]['image']))
                                                     <a href="{{ url('product/'.$item['product']['id'])}}"><img class="u-img-fluid" src="{{ asset('front/images/products/small/'.$item['product']['images'][0]['image']) }}" alt=""></a>
-                                                @else
+                                                    @else
                                                     <a href="{{ url('product/'.$item['product']['id'])}}"><img class="u-img-fluid" src="{{ asset('front/images/product/sitemakers-tshirt.png') }}" alt=""></a>
-                                                @endif
+                                                    @endif
                                                 </div>
                                                 <div class="o-card__info-wrap">
                                                     <span class="o-card__name">
                                                         <a href="{{ url('product/'.$item['product']['id'])}}">{{ $item['product']['product_name']}}</a></span>
 
                                                     <span class="o-card__quantity">Size: {{$item['product_size']}}</span>
-                                                     <span class="o-card__quantity">Quantity x {{$item['product_qty']}}</span>
+                                                    <span class="o-card__quantity">Quantity x {{$item['product_qty']}}</span>
 
-                                                    <span class="o-card__price">GHC{{$getAttributePrice['final_price'] * $item['product_qty']}}</span></div>
+                                                    <span class="o-card__price">GHC{{$getAttributePrice['final_price'] * $item['product_qty']}}</span>
+                                                </div>
                                             </div>
 
-                                            <a class="o-card__del far fa-trash-alt deleteCartItem"data-cartid="{{ $item['id'] }}"data-page="Checkout"></a>
+                                            <a class="o-card__del far fa-trash-alt deleteCartItem" data-cartid="{{ $item['id'] }}" data-page="Checkout"></a>
                                         </div>
-                                         @php $total_price = $total_price + ($getAttributePrice['final_price'] * $item['product_qty']) @endphp
+                                        @php $total_price = $total_price + ($getAttributePrice['final_price'] * $item['product_qty']) @endphp
                                         @endforeach
                                     </div>
                                 </div>
@@ -185,7 +190,7 @@
                                                     @if(!empty(Auth::user()->address))
                                                     {{ Auth::user()->address }},
                                                     @endif
-                                                     @if(!empty(Auth::user()->city))
+                                                    @if(!empty(Auth::user()->city))
                                                     {{ Auth::user()->city }},
                                                     @endif
                                                     @if(!empty(Auth::user()->state))
@@ -197,9 +202,9 @@
                                                     @if(!empty(Auth::user()->mobile))
                                                     M: {{Auth::user()->mobile }}
                                                     @endif
-                                                    </p>
+                                                </p>
 
-                                                <a class="ship-b__edit btn--e-transparent-platinum-b-2" data-modal="modal" data-modal-id="#edit-ship-address" href="{{ url('user/account') }}" >Edit</a>
+                                                <a class="ship-b__edit btn--e-transparent-platinum-b-2" data-modal="modal" data-modal-id="#edit-ship-address" href="{{ url('user/account') }}">Edit</a>
                                             </div>
                                         </div>
                                     </div>
@@ -221,7 +226,7 @@
                                                     <td>@if(Session::has('couponAmount'))
                                                         GHC{{Session::get('couponAmount')}}
                                                         @else
-                                                            GHC0
+                                                        GHC0
                                                         @endif
                                                     </td>
                                                 </tr>
@@ -245,7 +250,8 @@
                                                     <input type="radio" id="cash-on-delivery" name="payment_gateway" value="COD">
                                                     <div class="radio-box__state radio-box__state--primary">
 
-                                                        <label class="radio-box__label" for="cash-on-delivery">Cash on Delivery</label></div>
+                                                        <label class="radio-box__label" for="cash-on-delivery">Cash on Delivery</label>
+                                                    </div>
                                                 </div>
                                                 <!--====== End - Radio Box ======-->
 
@@ -288,7 +294,8 @@
                                                     <input type="radio" id="pay-pal" name="payment_gateway" value="Paystack">
                                                     <div class="radio-box__state radio-box__state--primary">
 
-                                                        <label class="radio-box__label" for="pay-pal">Pay With MOMO / Debit Card</label></div>
+                                                        <label class="radio-box__label" for="pay-pal">Pay With MOMO / Debit Card</label>
+                                                    </div>
                                                 </div>
                                                 <!--====== End - Radio Box ======-->
 
@@ -316,15 +323,17 @@
                                                     <input type="checkbox" id="term-and-condition" name="agree" value="Yes">
                                                     <div class="check-box__state check-box__state--primary">
 
-                                                        <label class="check-box__label" for="term-and-condition">I consent to the</label></div>
+                                                        <label class="check-box__label" for="term-and-condition">I consent to the</label>
+                                                    </div>
                                                 </div>
                                                 <!--====== End - Check Box ======-->
 
-                                                <a class="gl-link">Terms of Service.</a>
+                                                <a href="{{ route("terms-and-conditions") }}">Terms of Service.</a>
                                             </div>
                                             <div>
 
-                                                <button class="btn btn--e-brand-b-2" type="submit">PLACE ORDER</button></div>
+                                                <button class="btn btn--e-brand-b-2" type="submit">PLACE ORDER</button>
+                                            </div>
                                         </form>
                                     </div>
                                 </div>
