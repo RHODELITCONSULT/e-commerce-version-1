@@ -79,7 +79,7 @@ class CategoryController extends Controller
             if ($id == "") {
                 $rules = [
                     'category_name' => 'required',
-                    // 'url' => 'required|unique:categories',
+                    'url' => 'required|unique:categories',
                 ];
             } else {
                 $rules = [
@@ -90,7 +90,7 @@ class CategoryController extends Controller
 
             $customMessages = [
                 'category_name.required' => 'Category Name is required',
-                // 'url.required' => 'Category URL is required',
+                'url.required' => 'Category URL is required',
                 'url.unique' => 'Unique Category URL is required',
             ];
 
@@ -130,7 +130,7 @@ class CategoryController extends Controller
             $category->parent_id = $data['parent_id'];
             $category->category_discount = $data['category_discount'];
             $category->description = $data['description'];
-            // $category->url = $data['url'];
+            $category->url = $data['url'];
             $category->url = Str::slug($data['category_name']);
             $category->meta_title = $data['meta_title'];
             $category->meta_description = $data['meta_description'];

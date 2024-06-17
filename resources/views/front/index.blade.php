@@ -101,7 +101,7 @@
     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item newarrivals">
         <div class="product-o product-o--hover-on product-o--radius">
             <div class="product-o__wrap">
-                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="{{ route("product.detail",['id'=>$product['id']]) }}">
+                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="{{ url('product/'.$product['id'])}}">
                 @if(isset($product['images'][0]['image'])&& !empty($product['images'][0]['image']))
                 <img class="aspect__img" src="{{ asset('front/images/products/small/'.$product['images'][0]['image']) }}" alt="">
                 @else
@@ -112,7 +112,7 @@
             <span class="product-o__category">
             <a href="shop-side-version-2.html">{{ $product['brand']['brand_name'] }}</a></span>
             <span class="product-o__name">
-            <a href="product-detail.html">{{ $product['product_name'] }}</a></span>
+            <a href="{{ url('product/'.$product['id'])}}">{{ $product['product_name'] }}</a></span>
             <div class="product-o__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
                 <span class="product-o__review">(25)</span>
             </div>
@@ -127,7 +127,7 @@
     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item bestsellers">
         <div class="product-o product-o--hover-on product-o--radius">
             <div class="product-o__wrap">
-                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="{{ route("product.detail",['id'=>$product['id']]) }}">
+                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="{{ url('product/'.$product['id'])}}">
                 @if(isset($product['images'][0]['image'])&& !empty($product['images'][0]['image']))
                 <img class="aspect__img" src="{{ asset('front/images/products/small/'.$product['images'][0]['image']) }}" alt="">
                 @else
@@ -138,7 +138,7 @@
             <span class="product-o__category">
             <a href="shop-side-version-2.html">{{ $product['brand']['brand_name'] }}</a></span>
             <span class="product-o__name">
-            <a href="product-detail.html">{{ $product['product_name'] }}</a></span>
+            <a href="{{ url('product/'.$product['id'])}}">{{ $product['product_name'] }}</a></span>
             <div class="product-o__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
                 <span class="product-o__review">(25)</span>
             </div>
@@ -153,7 +153,7 @@
     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item discountedproducts">
         <div class="product-o product-o--hover-on product-o--radius">
             <div class="product-o__wrap">
-                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="{{ route("product.detail",['id'=>$product['id']]) }}">
+                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="{{ url('product/'.$product['id'])}}">
                 @if(isset($product['images'][0]['image'])&& !empty($product['images'][0]['image']))
                 <img class="aspect__img" src="{{ asset('front/images/products/small/'.$product['images'][0]['image']) }}" alt="">
                 @else
@@ -164,7 +164,7 @@
             <span class="product-o__category">
             <a href="shop-side-version-2.html">{{ $product['brand']['brand_name'] }}</a></span>
             <span class="product-o__name">
-            <a href="product-detail.html">{{ $product['product_name'] }}</a></span>
+            <a href="{{ url('product/'.$product['id'])}}">{{ $product['product_name'] }}</a></span>
             <div class="product-o__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
                 <span class="product-o__review">(25)</span>
             </div>
@@ -179,7 +179,7 @@
     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item featuredproducts">
         <div class="product-o product-o--hover-on product-o--radius">
             <div class="product-o__wrap">
-                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="{{ route("product.detail",['id'=>$product['id']]) }}">
+                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="{{ url('product/'.$product['id'])}}">
                 @if(isset($product['images'][0]['image'])&& !empty($product['images'][0]['image']))
                 <img class="aspect__img" src="{{ asset('front/images/products/small/'.$product['images'][0]['image']) }}" alt="">
                 @else
@@ -190,7 +190,7 @@
             <span class="product-o__category">
             <a href="shop-side-version-2.html">{{ $product['brand']['brand_name'] }}</a></span>
             <span class="product-o__name">
-            <a href="product-detail.html">{{ $product['product_name'] }}</a></span>
+            <a href="{{ url('product/'.$product['id'])}}">{{ $product['product_name'] }}</a></span>
             <div class="product-o__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
                 <span class="product-o__review">(25)</span>
             </div>
@@ -239,7 +239,7 @@
                         <div class="u-s-m-b-30">
                         <div class="product-o product-o--hover-on product-o--radius">
                         <div class="product-o__wrap">
-                                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
+                                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="{{ url('product/'.$product['id'])}}">
                                 @if(isset($product['images'][0]['image'])&& !empty($product['images'][0]['image']))
                                 <img class="aspect__img" src="{{ asset('front/images/products/small/'.$product['images'][0]['image']) }}" alt="">
                                 @else
@@ -250,7 +250,7 @@
                             <span class="product-o__category">
                             <a href="shop-side-version-2.html">{{ $product['brand']['brand_name'] }}</a></span>
                             <span class="product-o__name">
-                            <a href="product-detail.html">{{ $product['product_name'] }}</a></span>
+                            <a href="{{ url('product/'.$product['id'])}}">{{ $product['product_name'] }}</a></span>
                             <div class="product-o__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
                                 <span class="product-o__review">(25)</span>
                             </div>
@@ -298,7 +298,7 @@
                         <div class="u-s-m-b-30">
                             <div class="product-o product-o--hover-on product-o--radius">
             <div class="product-o__wrap">
-                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
+                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="{{ url('product/'.$product['id'])}}">
                 @if(isset($product['images'][0]['image'])&& !empty($product['images'][0]['image']))
                 <img class="aspect__img" src="{{ asset('front/images/products/small/'.$product['images'][0]['image']) }}" alt="">
                 @else
@@ -309,7 +309,7 @@
             <span class="product-o__category">
             <a href="shop-side-version-2.html">{{ $product['brand']['brand_name'] }}</a></span>
             <span class="product-o__name">
-            <a href="product-detail.html">{{ $product['product_name'] }}</a></span>
+            <a href="{{ url('product/'.$product['id'])}}">{{ $product['product_name'] }}</a></span>
             <div class="product-o__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
                 <span class="product-o__review">(25)</span>
             </div>

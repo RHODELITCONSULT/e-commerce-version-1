@@ -63,6 +63,7 @@ class ProductsController extends Controller
     }
 
     public function addEditProduct(Request $request,$id=null){
+        // dd($request->all(),
         Session::put('page','products');
         if($id==""){
             // Add Product
@@ -159,7 +160,7 @@ class ProductsController extends Controller
             $product->sleeve = $data['sleeve'];
             $product->pattern = $data['pattern'];
             $product->fit = $data['fit'];
-            $product->occassion = $data['occasion'];
+            $product->occasion = $data['occasion'];
             $product->description = $data['description'];
             $product->wash_care = $data['wash_care'];
             $product->search_keywords = $data['search_keywords'];

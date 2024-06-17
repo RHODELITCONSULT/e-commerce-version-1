@@ -51,16 +51,18 @@ class ProductsFilter extends Model
         return $getCategoryFilterColumns;
     }
 
-    public static function seletedFilters($filter_name,$catIds){
-        $productFilters = Product::select($filter_name)->whereIn('category_id',$catIds)->groupBy($filter_name)->get()->toArray();
+    public static function seletedFilters($filter_name, $catIds)
+    {
+        $productFilters = Product::select($filter_name)->whereIn('category_id', $catIds)->groupBy($filter_name)->get()->toArray();
         $productFilters = array_filter(Arr::flatten($productFilters));
-        //dd($productFilters);
+        // dd($productFilters);
         return $productFilters;
     }
 
-    public static function filterTypes(){
-       $filterTypes = ProductsFilter::select('filter_name')->groupBy('filter_name')->where('status',1)->get()->toArray();
-       $filterTypes = Arr::flatten($filterTypes);
-       return $filterTypes;  
+    public static function filterTypes()
+    {
+        $filterTypes = ProductsFilter::select('filter_name')->groupBy('filter_name')->where('status', 1)->get()->toArray();
+        $filterTypes = Arr::flatten($filterTypes);
+        return $filterTypes;  
     }
 }

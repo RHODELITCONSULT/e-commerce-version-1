@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
         // $this->call(adminsTableSeeder::class);
         // $this->call(CmsPageTableSeeder::class);
         // $this->call(CategoryTableSeeder::class);
-        // $this->call(ProductsTableSeeder::class);
+        $this->call(ProductsTableSeeder::class);
         // $this->call(ProductsImagesTableSeeder::class);
         // $this->call(ProductsAttributesTableSeeder::class);
         // $this->call(BrandsTableSeeder::class);
@@ -32,6 +32,6 @@ class DatabaseSeeder extends Seeder
         // $this->call(OrderStatusTableSeeder::class);
         // $this->call(NewsletterSubscriberTableSeeder::class);
         // $this->call(RatingsTableSeeder::class);
-         $this->call(WishlistsTableSeeder::class);
+        //  $this->call(WishlistsTableSeeder::class);
     }
 }

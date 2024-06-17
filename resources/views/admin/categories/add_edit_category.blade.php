@@ -88,10 +88,10 @@
               <label for="category_discount">Category Discount</label>
               <input type="text" class="form-control" id="category_discount" name="category_discount" placeholder="Enter Category Discount" @if(!empty($category['category_discount'])) value="{{ $category['category_discount'] }}" @else value="{{ old('category_discount') }}" @endif>
             </div>
-            {{-- <div class="form-group">
+          <div class="form-group">
               <label for="url">Category URL*</label>
               <input type="text" class="form-control" id="url" name="url" placeholder="Enter Category URL" @if(!empty($category['url'])) value="{{ $category['url'] }}" @else value="{{ old('url') }}" @endif>
-            </div> --}}
+            </div> 
             <div class="form-group">
               <label for="description">Category Description</label>
               <textarea class="form-control" rows="3" id="description" name="description" placeholder="Enter Category Description">@if(!empty($category['description'])) {{ $category['description'] }} @else {{ old('description') }} @endif</textarea>

@@ -237,7 +237,7 @@
                 @endif
                 <li class="nav-item menu-open">
                     <a href="#" class="nav-link {{ $active }}">
-                        <i class="nav-icon fas fa-th"></i>
+                        <i class="nav-icon fas fa-envelope"></i>
                         <p>
                             Mailbox
                             <i class="right fas fa-angle-left"></i>
@@ -265,7 +265,7 @@
                 @endif
                 <li class="nav-item menu-open">
                     <a href="#" class="nav-link {{ $active }}">
-                        <i class="nav-icon fas fa-th"></i>
+                        <i class="nav-icon fas fa-cart-plus"></i>
                         <p>
                             Orders Management
                             <i class="right fas fa-angle-left"></i>
@@ -293,7 +293,7 @@
                 @endif
                 <li class="nav-item menu-open">
                     <a href="#" class="nav-link {{ $active }}">
-                        <i class="nav-icon fas fa-th"></i>
+                        <i class="nav-icon fas fa-pen-alt"></i>
                         <p>
                             Ratings Management
                             <i class="right fas fa-angle-left"></i>
@@ -321,7 +321,7 @@
                 @endif
                 <li class="nav-item menu-open">
                     <a href="#" class="nav-link {{ $active }}">
-                        <i class="nav-icon fas fa-th"></i>
+                        <i class="nav-icon fas fa-shipping-fast"></i>
                         <p>
                             Shipping Management
                             <i class="right fas fa-angle-left"></i>
