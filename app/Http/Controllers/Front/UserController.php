@@ -138,7 +138,7 @@ class UserController extends Controller
                 // Send Welcome Email
                 $messageData = ['name'=>$userDetails->name,'mobile'=>$userDetails->mobile,'email'=>$email];
                 Mail::send('emails.register',$messageData,function($message) use($email){
-                    $message->to($email)->subject('Welcome to SiteMakers.in');
+                    $message->to($email)->subject('Welcome to Rhodel E-Commerce');
                 });
 
                 // Redirect the user to the Login Page with success message
@@ -167,7 +167,7 @@ class UserController extends Controller
                 $email = $data['email'];
                 $messageData = ['email'=>$data['email'],'code'=>base64_encode($data['email'])];
                  Mail::send('emails.reset_password',$messageData,function($message) use($email){
-                    $message->to($email)->subject('Reset your password - SiteMakers.in');
+                    $message->to($email)->subject('Reset your password - Rhodel E-Commerce');
                 });
 
                 // Show success message
@@ -197,7 +197,7 @@ class UserController extends Controller
                 // Send Confirmation Email to User
                 $messageData = ['email'=>$email];
                  Mail::send('emails.new_password_confirmation',$messageData,function($message) use($email){
-                    $message->to($email)->subject('Password Updated - SiteMakers.in');
+                    $message->to($email)->subject('Password Updated - Rhodel E-Commerce');
                 });
 
                 // Show success message
