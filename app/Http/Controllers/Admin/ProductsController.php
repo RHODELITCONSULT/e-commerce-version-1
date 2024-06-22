@@ -87,7 +87,7 @@ class ProductsController extends Controller
              // Product Validation
             $rules = [
                 'category_id' => 'required',
-                'product_name' => 'required|regex:/^[\pL\s-]+$/u|max:200',
+                // 'product_name' => 'required|regex:/^[\pL\s-]+$/u|max:200',
                 'product_code' => 'required|regex:/^[\w-]*$/|max:30',
                 'product_price' => 'required|numeric',
                 'product_color' => 'required|regex:/^[\pL\s-]+$/u|max:200',
@@ -97,7 +97,7 @@ class ProductsController extends Controller
              $customMessages = [
                 'category_id.required' => 'Category is required',
                 'product_name.required' => 'Product Name is required',
-                'product_name.regex' => 'Valid Product Name is required',
+                // 'product_name.regex' => 'Valid Product Name is required',
                 'product_code.required' => 'Product Code is required',
                 'product_code.regex' => 'Valid Product Code is required',
                 'product_price.required' => 'Product Price is required',
